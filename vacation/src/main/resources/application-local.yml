@@ -1,0 +1,90 @@
+file:
+  upload:
+    directory: C:\\APP\\BXR_UPLOAD
+  uri:
+    path: files
+
+spring:
+  jwt:
+    secret: jwooooooootest
+  datasource:
+    driver-class-name: cubrid.jdbc.driver.CUBRIDDriver
+    username: dba
+    password: 12qw12qw`
+    url: jdbc:cubrid:localhost:33000:asset_vacation:::?charset=UTF-8
+    hikari:
+      connection-test-query: select 1
+  jpa:
+    database-platform: org.hibernate.dialect.CUBRIDDialect
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      dll-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        use_sql_comments: true
+        globally_quoted_identifiers: true
+        globally_quoted_identifiers_skip_column_definitions: true
+        temp:
+          use_jdbc_metadata_defaults: false
+  devtools:
+    livereload:
+      enabled: true
+  servlet:
+    multipart:
+      max-file-size: 200MB
+      max-request-size: 200MB
+  profiles:
+    active: local
+  mail:
+    default-encoding: UTF-8
+    host: smtp.google.com
+    port: 465
+    properties:
+      mail:
+        smtp:
+          auth: true
+        transport:
+          protocol: smtp
+      debug: true
+    username: user
+    password: pass
+  thymeleaf:
+    prefix: classpath:/template/
+    suffix: .html
+    encoding: UTF-8
+    mode: HTML
+    check-template-location: true
+    cache: false
+
+ext:
+  token: 1440
+  refresh: 2880
+
+
+server:
+  header:
+    key: Authorization
+  port: 9001
+  servlet:
+    context-path: /api
+  tomcat:
+    max-connections: 10000
+    max-threads: 550
+
+client:
+  header:
+    key: agent-token
+
+
+logging:
+  level:
+      root: INFO
+      org:
+        hibernate:
+          type:
+            descriptor:
+              sql:
+                BasicBinder: trace
+      com.gen.bluexray.*: DEBUG

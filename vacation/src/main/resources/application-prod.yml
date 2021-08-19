@@ -1,0 +1,86 @@
+file:
+  upload:
+    directory: /root/files
+  uri:
+    path: files
+spring:
+  jwt:
+    secret: kljhsdghrkjghvkjhkjerhgkjer#$##$#
+  datasource:
+    driver-class-name: cubrid.jdbc.driver.CUBRIDDriver
+    username: ${CUBRID_ENV_USER}
+    password: ${CUBRID_ENV_PASSWORD}
+    url: jdbc:cubrid:${CUBRID_ENV_IP}:${CUBRID_ENV_PORT}:${CUBRID_ENV_DB}:::?charset=UTF-8
+    hikari:
+      connection-test-query: select 1
+  jpa:
+    database-platform: org.hibernate.dialect.CUBRIDDialect
+    show-sql: false
+    generate-ddl: true
+    hibernate:
+      dll-auto: none
+    properties:
+      hibernate:
+        format_sql: true
+        use_sql_comments: true
+        globally_quoted_identifiers: true
+        globally_quoted_identifiers_skip_column_definitions: true
+        temp:
+          use_jdbc_metadata_defaults: false
+  servlet:
+    multipart:
+      max-file-size: 200MB
+      max-request-size: 200MB
+  profiles:
+    active: prod
+  mail:
+    default-encoding: UTF-8
+    host: ${ENV_MAIL_HOST}
+    port: ${ENV_MAIL_PORT}
+    username: ${ENV_MAIL_USER}
+    password: ${ENV_MAIL_PASS}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: ${ENV_MAIL_TLS}
+        transport:
+          protocol: smtp
+      debug: true
+  thymeleaf:
+    prefix: classpath:/template/
+    suffix: .html
+    encoding: UTF-8
+    mode: HTML
+    check-template-location: true
+    cache: false
+
+ext:
+  token: 1440
+  refresh: 2880
+
+
+server:
+  header:
+    key: Authorization
+  port: 9000
+  servlet:
+    context-path: /api
+  tomcat:
+    max-connections: 10000
+    max-threads: 550
+
+client:
+  header:
+    key: agent-token
+
+
+#로그 레벨
+logging:
+  level:
+    root: ERROR
+    com.gen.vacation.*: INFO
+  file: /log/backend/server.log
+  file.max-history: 10
+  file.max-size: 1000GB

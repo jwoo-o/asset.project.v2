@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+</head>
+<body>
+<table style="background-color: #FFFAE7;font-family: 맑은고딕, Malgun Gothic, dotum, gulim, sans-serif;width: 500px;border-collapse: collapse; padding: 0; margin: 0;">
+    <!--<tr>
+        <td>
+            <a href="#">
+                <img src="#" width="100"
+                     style="margin-top: 20px;margin-left: 10px;margin-bottom:10px;opacity: 70%;display: block;">
+            </a>
+        </td>
+    </tr>-->
+    <tr align="center">
+        <td style="padding-top: 20px">
+            <table width="400">
+                <tr align="center">
+                    <td style="border-top: 3px solid #FFD966; border-bottom: 3px solid #FFD966; background-color: #FFEEB7;padding: 10px;">
+                        <span style="font-size: 1.2em; font-weight: bold;">휴가계</span>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr align="center">
+        <td style="padding-top: 30px">
+            <table width="400"
+                   style="border-collapse:collapse;border:3px solid #7F6000;margin-bottom: 20px;text-align: center">
+                <tr style="height: 40px;">
+                    <td style="border: 1px solid #AF974D;background-color: #FFF2CC;" width="50%">
+                        <span style="font-weight: bold;font-size: 10pt;">부서</span>
+                    </td>
+                    <td style="border: 1px solid #AF974D;background-color: #FFF2CC;" width="50%">
+                        <span style="font-weight: bold;font-size: 10pt;">이름</span>
+                    </td>
+                </tr>
+                <tr style="height: 40px;">
+                    <td style="border: 1px solid #AF974D; background-color: #FFFBF0; word-break: break-all;" width="50%">
+                        <span style="font-size: 9pt;" th:text="${orgName}"/>
+                    </td>
+                    <td style="border: 1px solid #AF974D; background-color: #FFFBF0; word-break: break-all;" width="50%">
+                        <span style="font-size: 9pt;" th:text="${name}"/>
+                    </td>
+                </tr>
+                <tr style="height: 40px;">
+                    <td colspan="2" style="border: 1px solid #AF974D;background-color: #FFF2CC;">
+                        <span style="font-weight: bold;font-size: 10pt;">일시</span>
+                    </td>
+                </tr>
+                <tr style="height: 50px;">
+                    <td colspan="2" style="border: 1px solid #AF974D; background-color: #FFFBF0; word-break: break-all;">
+                <span style="font-size: 9pt"
+                      th:text="${startDay}+' ~ '+${endDay}+' (총 '+${countDay}+'일, '+${vacationKindDesc}+')'"></span>
+                    </td>
+                </tr>
+                <tr style="height: 40px;">
+                    <td colspan="2" style="border: 1px solid #AF974D;background-color: #FFF2CC;">
+                        <span style="font-weight: bold;font-size: 10pt;">사유</span>
+                    </td>
+                </tr>
+                <tr style="height: 100px;">
+                    <td colspan="2" style="border: 1px solid #AF974D; background-color: #FFFBF0; word-break: break-all;">
+                        <span style="font-size: 9pt" th:text="${vacationReason}"></span>
+                    </td>
+                </tr>
+                <tr th:if="${reason != null}" style="height: 40px;">
+                    <td colspan="2" style="border: 1px solid #AF974D;background-color: #FFF2CC;">
+                        <span style="font-weight: bold;font-size: 10pt;">취소 사유</span>
+                    </td>
+                </tr>
+                <tr th:if="${reason != null}" style="height: 60px;">
+                    <td colspan="2" style="border: 1px solid #AF974D; background-color: #FFFBF0; word-break: break-all;">
+                        <span style="font-size: 9pt" th:text="${reason}"></span>
+                    </td>
+                </tr>
+                <tr th:if="${rejectReason != null}" style="height: 40px;">
+                    <td colspan="2" style="border: 1px solid #AF974D;background-color: #FFF2CC;">
+                        <span style="font-weight: bold;font-size: 10pt;">반려 사유</span>
+                    </td>
+                </tr>
+                <tr th:if="${rejectReason != null}" style="height: 60px;">
+                    <td colspan="2" style="border: 1px solid #AF974D; background-color: #FFFBF0; word-break: break-all;">
+                        <span style="font-size: 9pt" th:text="${rejectReason}"></span>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr th:if="${vacationId != null}" align="center">
+        <td style="padding: 5px">
+            <table width="400">
+                <tr align="right">
+                    <td>
+                        <a th:href="@{${url}(approveState=REJECT,token=${token},orderPosition=${orderPosition},vacationId=${vacationId},vacationKind=${vacationKind})}">
+                            <img src="https://i.imgur.com/yNgoqE4.png" width="80"
+                                 style="display: inline;">
+                        </a>
+                        <a th:href="@{${url}(approveState=ING,token=${token},orderPosition=${orderPosition},vacationId=${vacationId},vacationKind=${vacationKind})}">
+                            <img src="https://i.imgur.com/8CdXY73.png" width="80"
+                                 style="display: inline; margin-left: 10px;">
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
+
+

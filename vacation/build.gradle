@@ -1,0 +1,129 @@
+buildscript {
+    ext {
+        springBootVersion = '2.1.7.RELEASE'
+        querydslPluginVersion = '1.0.10'
+    }
+    repositories {
+        mavenCentral()
+        jcenter()
+        maven { url "https://plugins.gradle.org/m2/" }
+        //maven {url "http://localhost:8081/repository/maven-public/"}
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("gradle.plugin.com.ewerk.gradle.plugins:querydsl-plugin:${querydslPluginVersion}")
+    }
+}
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+apply plugin: 'io.spring.dependency-management'
+
+apply plugin: "com.ewerk.gradle.plugins.querydsl" // Plugin 적용
+
+
+
+
+group 'com.gen.bluexray'
+version '1.0-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    jcenter()
+    maven { url "https://plugins.gradle.org/m2/" }
+    //maven {url "http://localhost:8081/repository/maven-public/"}
+}
+
+dependencies {
+
+    compile("com.querydsl:querydsl-jpa") // querydsl
+    compile("com.querydsl:querydsl-apt") // querydsl
+
+    compile('org.springframework.boot:spring-boot-devtools')
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-starter-mail')
+    compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile('org.springframework.boot:spring-boot-starter-data-redis')
+    compile('org.springframework.boot:spring-boot-starter-security')
+    compile('org.springframework.boot:spring-boot-starter-websocket')
+    compile("org.springframework.boot:spring-boot-starter-amqp")
+    compile("org.springframework.boot:spring-boot-starter-reactor-netty")
+
+
+    compile('org.projectlombok:lombok')
+    compile group: 'it.ozimov', name: 'embedded-redis', version: '0.7.2'
+
+    compile('io.springfox:springfox-swagger2:2.6.1')
+    compile('io.springfox:springfox-swagger-ui:2.6.1')
+    compile('org.webjars:stomp-websocket:2.3.3-1')
+
+
+    compile group: 'org.modelmapper.extensions', name: 'modelmapper-jackson', version: '2.3.5'
+    compile group: 'commons-net', name: 'commons-net', version: '3.6'
+    compile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1'
+    /* // https://mvnrepository.com/artifact/net.sf.json-lib/json-lib
+     compile group: 'net.sf.json-lib', name: 'json-lib', version: '2.4'
+ */
+    compile group: 'com.github.ulisesbocchio', name: 'jasypt-spring-boot-starter', version: '3.0.0'
+
+    compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
+
+
+    compile('eu.bitwalker:UserAgentUtils:1.21')
+
+
+
+    compile group: 'org.apache.poi', name: 'poi-ooxml', version: '4.1.2'
+    compile group: 'org.apache.poi', name: 'poi', version: '4.1.2'
+
+    compile('org.apache.commons:commons-text:1.8')
+
+    // lettuce
+
+
+    //compile group: 'cubrid', name: 'cubrid-jdbc', version: '10.1.3.7765'
+    //compile('org.springframework.session:spring-session-jdbc')
+    //compile('com.h2database:h2')
+    //compile('org.springframework.boot:spring-boot-starter-oauth2-client')
+
+
+    dependencies {
+        compile fileTree(dir: 'lib', include: ['*.jar'])
+    }
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile group: 'it.ozimov', name: 'embedded-redis', version: '0.7.1'
+
+
+}
+def querydslSrcDir = 'src/main/generated' // QClass 생성 위치
+
+querydsl {
+    library = "com.querydsl:querydsl-apt"
+    jpa = true
+    querydslSourcesDir = querydslSrcDir
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java', querydslSrcDir]
+        }
+    }
+}
+
+bootRun {
+    String activeProfile = System.properties['spring.profiles.active']
+    systemProperty "spring.profiles.active", activeProfile
+}
+
+project.afterEvaluate {
+    project.tasks.compileQuerydsl.options.compilerArgs = [
+            "-proc:only",
+            "-processor", project.querydsl.processors() +
+                    ',lombok.launch.AnnotationProcessorHider$AnnotationProcessor'
+    ]
+}
+

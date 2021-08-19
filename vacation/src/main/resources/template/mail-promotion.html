@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <style>
+        .xl78
+        {mso-style-parent:style0;
+            font-size:10.0pt;
+            font-weight:700;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            text-align:center;
+            border-top:1.0pt solid windowtext;
+            border-right:.5pt solid windowtext;
+            border-bottom:.5pt solid windowtext;
+            border-left:1.0pt solid windowtext;}
+        .xl80
+        {mso-style-parent:style0;
+            font-size:10.0pt;
+            font-weight:700;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            text-align:center;
+            border-top:.5pt solid windowtext;
+            border-right:.5pt solid windowtext;
+            border-bottom:1.0pt solid windowtext;
+            border-left:1.0pt solid windowtext;}
+        .xl96
+        {mso-style-parent:style0;
+            font-weight:700;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;}
+        .xl98
+        {mso-style-parent:style0;
+            font-weight:700;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            background:silver;
+            mso-pattern:black none;}
+        .xl99
+        {mso-style-parent:style0;
+            font-size:10.0pt;
+            font-weight:700;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            text-align:right;
+            background:silver;
+            mso-pattern:black none;}
+        .xl101
+        {mso-style-parent:style0;
+            font-size:10.0pt;
+            font-weight:700;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            text-align:center;
+            border-top:.5pt solid windowtext;
+            border-right:.5pt solid windowtext;
+            border-bottom:1.0pt solid windowtext;
+            border-left:.5pt solid windowtext;
+            white-space:normal;}
+        .xl103
+        {mso-style-parent:style0;
+            font-size:10.0pt;
+            font-weight:700;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            text-align:center;
+            border-top:1.0pt solid windowtext;
+            border-right:.5pt solid windowtext;
+            border-bottom:.5pt solid windowtext;
+            border-left:.5pt solid windowtext;
+            white-space:normal;}
+        .xl104
+        {mso-style-parent:style0;
+            font-weight:700;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            mso-number-format:"Short Date";
+            text-align:center;
+            border-top:1.0pt solid windowtext;
+            border-right:1.0pt solid windowtext;
+            border-bottom:1.0pt solid windowtext;
+            border-left:none;
+            white-space:nowrap;
+            mso-text-control:shrinktofit;}
+        .xl105
+        {mso-style-parent:style0;
+            font-weight:700;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            text-align:center;
+            border-top:1.0pt solid windowtext;
+            border-right:.5pt solid windowtext;
+            border-bottom:1.0pt solid windowtext;
+            border-left:.5pt solid windowtext;}
+        .xl106
+        {mso-style-parent:style0;
+            font-weight:700;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            text-align:center;
+            border-top:1.0pt solid windowtext;
+            border-right:.5pt solid windowtext;
+            border-bottom:1.0pt solid windowtext;
+            border-left:1.0pt solid windowtext;}
+        .xl107
+        {mso-style-parent:style0;
+            font-size:10.0pt;
+            font-weight:700;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            text-align:center;
+            border-top:.5pt solid windowtext;
+            border-right:1.0pt solid windowtext;
+            border-bottom:.5pt solid windowtext;
+            border-left:none;}
+        .xl108
+        {mso-style-parent:style0;
+            font-size:22.0pt;
+            font-weight:700;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            text-align:center;}
+        .xl109
+        {mso-style-parent:style0;
+            font-weight:700;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            text-align:center;}
+        .xl110
+        {mso-style-parent:style0;
+            font-weight:700;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            text-align:center;
+            border-top:1.0pt solid windowtext;
+            border-right:none;
+            border-bottom:1.0pt solid windowtext;
+            border-left:.5pt solid windowtext;}
+        .xl112
+        {mso-style-parent:style0;
+            font-size:10.0pt;
+            font-weight:700;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            text-align:center;
+            border-top:1.0pt solid windowtext;
+            border-right:.5pt solid windowtext;
+            border-bottom:.5pt solid windowtext;
+            border-left:.5pt solid windowtext;}
+        .xl113
+        {mso-style-parent:style0;
+            font-size:18.0pt;
+            font-weight:700;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            text-align:center;}
+        .xl114
+        {mso-style-parent:style0;
+            font-size:10.0pt;
+            font-weight:700;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            text-align:center;
+            border-top:.5pt solid windowtext;
+            border-right:.5pt solid windowtext;
+            border-bottom:1.0pt solid windowtext;
+            border-left:.5pt solid windowtext;}
+        .xl115
+        {mso-style-parent:style0;
+            font-size:10.0pt;
+            font-weight:700;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            text-align:center;
+            white-space:nowrap;
+            mso-text-control:shrinktofit;}
+        .xl116
+        {mso-style-parent:style0;
+            font-size:10.0pt;
+            font-weight:700;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            mso-number-format:"\#\#\0022일\0022";
+            text-align:left;}
+        .xl117
+        {mso-style-parent:style0;
+            font-size:10.0pt;
+            font-weight:700;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            text-align:left;}
+        .xl118
+        {mso-style-parent:style0;
+            font-weight:700;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            mso-number-format:"yyyy\0022년\0022\\ m\0022월\0022\\ d\0022일\0022\;\@";
+            text-align:center;}
+        .xl150
+        {mso-style-parent:style0;
+            font-size:10.0pt;
+            font-weight:700;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            text-align:center;
+            white-space:normal;}
+
+    </style>
+</head>
+
+<body link=blue vlink=purple class=xl96>
+
+<table border=0 cellpadding=0 cellspacing=0 width=754 style='border-collapse:
+ collapse;table-layout:fixed;width:565pt'>
+    <col class=xl96 width=19 style='mso-width-source:userset;mso-width-alt:540;
+ width:14pt'>
+    <col class=xl96 width=95 span=4 style='mso-width-source:userset;mso-width-alt:
+ 2702;width:71pt'>
+    <col class=xl96 width=109 style='mso-width-source:userset;mso-width-alt:3100;
+ width:82pt'>
+    <col class=xl96 width=106 style='mso-width-source:userset;mso-width-alt:3015;
+ width:80pt'>
+    <col class=xl96 width=121 style='mso-width-source:userset;mso-width-alt:3441;
+ width:91pt'>
+    <col class=xl96 width=19 style='mso-width-source:userset;mso-width-alt:540;
+ width:14pt'>
+    <tr height=27 style='mso-height-source:userset;height:20.25pt'>
+        <td height=27 class=xl96 width=19 style='height:20.25pt;width:14pt'><a
+                name="Print_Area"></a></td>
+        <td class=xl96 width=95 style='width:71pt'></td>
+        <td class=xl96 width=95 style='width:71pt'></td>
+        <td class=xl96 width=95 style='width:71pt'></td>
+        <td class=xl96 width=95 style='width:71pt'></td>
+        <td class=xl96 width=109 style='width:82pt'></td>
+        <td class=xl96 width=106 style='width:80pt'></td>
+        <td class=xl96 width=121 style='width:91pt'></td>
+        <td class=xl96 width=19 style='width:14pt'></td>
+    </tr>
+    <tr height=42 style='mso-height-source:userset;height:31.5pt'>
+        <td height=42 class=xl96 style='height:31.5pt'></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+        <td class=xl96><a style="text-decoration-line: none;!important;" th:href="@{${url}(checkKey=${token},year=${year},userId=${id},writer=USER)}">
+            지정하기</a></td>
+    </tr>
+    <tr height=43 style='mso-height-source:userset;height:32.25pt'>
+        <td colspan=9 height=43 class=xl108 style='height:32.25pt'>&#9745; 미사용 연차유급휴가일수 통지</td>
+    </tr>
+    <tr height=43 style='mso-height-source:userset;height:32.25pt'>
+        <td colspan=9 height=43 class=xl108 style='height:32.25pt'>&#9745; 휴가사용 시기지정 통보 촉구</td>
+    </tr>
+    <tr height=24 style='mso-height-source:userset;height:18.0pt'>
+        <td colspan=9 height=24 class=xl109 style='height:18.0pt'>[ 관련 : 근로기준법 제61조의
+            및 취업규칙 제 78 조 ]</td>
+    </tr>
+    <tr height=40 style='mso-height-source:userset;height:30.0pt'>
+        <td height=40 class=xl96 style='height:30.0pt'></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+    </tr>
+    <tr height=45 style='mso-height-source:userset;height:33.75pt'>
+        <td height=45 class=xl96 style='height:33.75pt'></td>
+        <td class=xl106>성명</td>
+        <td class=xl105 style='border-left:none'><span th:text="${name}"/></td>
+        <td class=xl105 style='border-left:none'>소속</td>
+        <td colspan=2 class=xl110 style='border-right:.5pt solid black;border-left:
+  none'> <span th:text="${orgName}"/></td>
+        <td class=xl105 style='border-left:none'>입사일</td>
+        <td class=xl104><span th:text="${hireDate}"/></td>
+        <td class=xl96></td>
+    </tr>
+    <tr height=23 style='height:17.25pt'>
+        <td height=23 class=xl96 style='height:17.25pt'></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+    </tr>
+    <tr height=45 style='mso-height-source:userset;height:33.75pt'>
+        <td height=45 class=xl96 style='height:33.75pt'></td>
+        <td class=xl96></td>
+        <td colspan=2 class=xl78>발생연차</td>
+        <td colspan=2 class=xl112 style='border-left:none'>사용연차</td>
+        <td colspan=1 class=xl103 style='border-left:none'>미사용<br></td>
+        <td class=xl96></td>
+    </tr>
+    <tr height=45 style='mso-height-source:userset;height:33.75pt'>
+        <td height=45 class=xl96 style='height:33.75pt'></td>
+        <td class=xl96></td>
+        <td colspan=2 class=xl80> <span th:text="${total}"/></td>
+        <td colspan=2 class=xl114 style='border-left:none'><span th:text="${use}"/></td>
+        <td colspan=1 class=xl101 style='border-top:none;border-left:none'><span th:text="${unUse}"/></td>
+        <td class=xl96></td>
+    </tr>
+    <tr height=22 style='height:16.5pt'>
+        <td height=22 class=xl96 style='height:16.5pt'></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+    </tr>
+    <tr height=27 style='mso-height-source:userset;height:20.25pt'>
+        <td height=27 class=xl96 style='height:20.25pt'></td>
+        <td class=xl99><span th:text="${name}"/></td>
+        <td colspan=3 class=xl115>님의 현재 사용가능한 미사용 연차유급휴가일수는</td>
+        <td class=xl98 align=right><span th:text="${unUse}"/></td>
+        <td colspan=2 class=xl116>일임을 알려드립니다.</td>
+        <td class=xl96></td>
+    </tr>
+    <tr height=27 style='mso-height-source:userset;height:20.25pt'>
+        <td height=27 class=xl96 style='height:20.25pt'></td>
+        <td colspan=7 class=xl117></td>
+        <td class=xl96></td>
+    </tr>
+    <tr height=27 style='mso-height-source:userset;height:20.25pt'>
+        <td height=27 class=xl96 style='height:20.25pt'></td>
+        <td colspan=7 rowspan=6 class=xl150 width=716 style='width:537pt'><span th:text="${deadline}"/> 까지 미사용 연차유급휴가일수의 사용시기를 지정하여 주실 것을 촉구드리는
+            바입니다.<br>
+            <br>
+            <span style='mso-spacerun:yes'>&nbsp; </span>동 기한 내에 “미사용 연차유급휴가
+            사용시기 지정이 되어있지 않을 경우<br>
+            <span style='mso-spacerun:yes'>&nbsp; </span>관련 규정에 의해 추후 회사가 임의 지정할 예정이며,
+            그럼에도 불구하고 사용하지 아니한 연차유급휴가일수에 <br>
+            <span style='mso-spacerun:yes'>&nbsp; </span>대하여는 향후 연차유급휴가수당이 지급되지 않음을
+            알려드리니 유념하시기 바랍니다.<br>
+        </td>
+        <td class=xl96></td>
+    </tr>
+    <tr height=22 style='height:16.5pt'>
+        <td height=22 class=xl96 style='height:16.5pt'></td>
+        <td class=xl96></td>
+    </tr>
+    <tr height=22 style='height:16.5pt'>
+        <td height=22 class=xl96 style='height:16.5pt'></td>
+        <td class=xl96></td>
+    </tr>
+    <tr height=22 style='height:16.5pt'>
+        <td height=22 class=xl96 style='height:16.5pt'></td>
+        <td class=xl96></td>
+    </tr>
+    <tr height=22 style='height:16.5pt'>
+        <td height=22 class=xl96 style='height:16.5pt'></td>
+        <td class=xl96></td>
+    </tr>
+    <tr height=22 style='height:16.5pt'>
+        <td height=22 class=xl96 style='height:16.5pt'></td>
+        <td class=xl96></td>
+    </tr>
+    <tr height=32 style='mso-height-source:userset;height:24.0pt'>
+        <td height=32 class=xl96 style='height:24.0pt'></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+    </tr>
+    <tr height=22 style='height:16.5pt'>
+        <td colspan=9 height=22 class=xl118 style='height:16.5pt'><span th:text="${today}"/></td>
+    </tr>
+    <tr height=22 style='height:16.5pt'>
+        <td height=22 class=xl96 style='height:16.5pt'></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+    </tr>
+    <tr height=35 style='height:26.25pt'>
+        <td colspan=9 height=35 class=xl113 style='height:26.25pt'></td>
+    </tr>
+    <tr height=22 style='height:16.5pt'>
+        <td height=22 class=xl96 style='height:16.5pt'></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+    </tr>
+    <tr height=22 style='height:16.5pt'>
+        <td height=22 class=xl96 style='height:16.5pt'></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+        <td class=xl96></td>
+    </tr>
+    <tr height=22 style='height:16.5pt'>
+        <td height=22 class=xl96 style='height:16.5pt'></td>
+        <td colspan=7 rowspan=13 height=286 class=xl96 width=716 style='mso-ignore:
+  colspan-rowspan;height:214.5pt;width:537pt'><span style='mso-ignore:vglayout'>
+  <table cellpadding=0 cellspacing=0>
+   <tr>
+    <td width=0 height=13></td>
+   </tr>
+   <tr>
+    <td></td>
+    <td><img width=716 height=535 src=https://i.imgur.com/ayuOhr2.png v:shapes="Text_x0020_Box_x0020_2"></td>
+    <td width=0></td>
+   </tr>
+   <tr>
+    <td height=5></td>
+   </tr>
+  </table>
+  </span></td>
+        <td class=xl96></td>
+    </tr>
+</table>
+
+</body>
+
+</html>
