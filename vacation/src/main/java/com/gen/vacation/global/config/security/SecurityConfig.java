@@ -1,6 +1,5 @@
 package com.gen.vacation.global.config.security;
 
-import com.gen.vacation.global.Enum.TokenEnum;
 import com.gen.vacation.global.config.JwtTokenConfig;
 import com.gen.vacation.global.filter.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
@@ -41,6 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/user/login").permitAll()
                 .antMatchers("/asset/token/**").permitAll()
                 .antMatchers("/common-code/**").permitAll()
+                .antMatchers("/image/**").permitAll()
                 .antMatchers("/files/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
@@ -51,8 +51,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override // ignore check swagger resource
     public void configure(WebSecurity web) {
-        /*web.ignoring().antMatchers("/v2/api-docs", "/swagger-resources/**",
-                "/swagger-ui.html", "/webjars/**", "/swagger/**", "/favicon.ico", "/h2-console/**");*/
+        web.ignoring().antMatchers("/v2/api-docs", "/swagger-resources/**",
+                "/swagger-ui.html", "/webjars/**", "/swagger/**", "/favicon.ico", "/h2-console/**");
         web.ignoring().antMatchers("/favicon.ico");
     }
 

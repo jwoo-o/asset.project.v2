@@ -9,7 +9,6 @@ import com.gen.vacation.global.domain.entity.repositorys.OrganizationRepository;
 import com.gen.vacation.server.approverGroup.dto.ApproverDetailRequestDto;
 import com.gen.vacation.server.approverGroup.dto.ApproverGroupRequestDto;
 import com.gen.vacation.server.approverGroup.dto.ApproverGroupResponseDto;
-import com.gen.vacation.server.approverGroup.repository.ApproverDetailRepositorySupport;
 import com.gen.vacation.server.approverGroup.repository.ApproverGroupRepositorySupport;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -32,7 +31,6 @@ public class ApproverGroupService {
 
     private final ApproverDetailRepository approverDetailRepository;
 
-    private final ApproverDetailRepositorySupport approverDetailRepositorySupport;
 
     private final OrganizationRepository organizationRepository;
 
@@ -45,14 +43,14 @@ public class ApproverGroupService {
 
     public ApproverGroupResponseDto selApproverDetail(Long approverGroupCode) throws Exception {
 
-        ApproverGroup group = approverGroupRepository.findByApproverGroupCode(approverGroupCode).orElseThrow(() -> new IllegalArgumentException());
+        ApproverGroup group = approverGroupRepository.findByApproverGroupCode(approverGroupCode).orElseThrow(IllegalArgumentException::new);
 
         return new ApproverGroupResponseDto(group);
     }
 
     public ApproverGroupResponseDto selApproverDetailByOrgCode(String orgCode, String jobCode) throws Exception {
 
-        ApproverGroup group = approverGroupRepository.findByOrgCodeAndJobCodeAndUseYn(orgCode, jobCode,true).orElseThrow(() -> new IllegalArgumentException());
+        ApproverGroup group = approverGroupRepository.findByOrgCodeAndJobCodeAndUseYn(orgCode, jobCode,true).orElseThrow(IllegalArgumentException::new);
 
         return new ApproverGroupResponseDto(group);
     }
@@ -81,7 +79,7 @@ public class ApproverGroupService {
 
 
     public void updApproverGroup(@Valid ApproverGroupRequestDto dto) throws Exception {
-        ApproverGroup group = approverGroupRepository.findByOrgCodeAndJobCode(dto.getOrgCode(), dto.getJobCode()).orElseThrow(() -> new IllegalArgumentException());
+        ApproverGroup group = approverGroupRepository.findByOrgCodeAndJobCode(dto.getOrgCode(), dto.getJobCode()).orElseThrow(IllegalArgumentException::new);
 
         group.update(dto);
 
@@ -135,7 +133,7 @@ public class ApproverGroupService {
 
     public void delApproverGroup(Long id) {
 
-        ApproverGroup approverGroup = approverGroupRepository.findById(id).orElseThrow(() -> new IllegalArgumentException());
+        ApproverGroup approverGroup = approverGroupRepository.findById(id).orElseThrow(IllegalArgumentException::new);
         approverGroup.delete(false);
 
     }

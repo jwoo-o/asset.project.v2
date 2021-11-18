@@ -5,7 +5,6 @@ import com.gen.vacation.global.util.JsonUtil;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.omg.CORBA.OBJ_ADAPTER;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

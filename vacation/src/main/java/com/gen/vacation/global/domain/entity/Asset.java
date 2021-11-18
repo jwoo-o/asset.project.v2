@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.gen.vacation.global.domain.common.BaseTimeEntity;
 import com.gen.vacation.global.util.JsonUtil;
 import com.gen.vacation.server.asset.dto.AssetRequestDto;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,11 +20,12 @@ import java.util.List;
  * Date: 2021-06-30
  * Time: 오전 11:03
  */
-@Builder
 @Getter
-@Entity(name = "tb_asset")
 @NoArgsConstructor
-@AllArgsConstructor
+@Entity(name = "tb_asset")
+@Table(name = "tb_asset",indexes = {
+        @Index(columnList = "modified_at")
+})
 public class Asset extends BaseTimeEntity implements Persistable<String> {
 
     @Id
@@ -68,6 +68,22 @@ public class Asset extends BaseTimeEntity implements Persistable<String> {
     @OneToMany(mappedBy = "asset")
     private List<AssetFile> assetFiles = new ArrayList<>();
 
+    @Builder
+    public Asset(String assetId, String category, String status, String modelName, String manufacture, String serialNumber, String userId, String orgCode, LocalDate purchaseDate, Long price, String note, String assetInfo, String pcId) {
+        this.assetId = assetId;
+        this.category = category;
+        this.status = status;
+        this.modelName = modelName;
+        this.manufacture = manufacture;
+        this.serialNumber = serialNumber;
+        this.userId = userId;
+        this.orgCode = orgCode;
+        this.purchaseDate = purchaseDate;
+        this.price = price;
+        this.note = note;
+        this.assetInfo = assetInfo;
+        this.pcId = pcId;
+    }
 
     public void update(AssetRequestDto dto) throws JsonProcessingException {
 

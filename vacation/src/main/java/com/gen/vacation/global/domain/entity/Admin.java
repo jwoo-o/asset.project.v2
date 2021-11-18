@@ -98,6 +98,9 @@ public class Admin extends BaseTimeEntity implements Persistable<String> {
     @OneToMany(mappedBy = "admin")
     private List<VacationCountHistory> vacationCountHistories = new ArrayList<>();
 
+    @OneToMany(mappedBy = "admin")
+    private List<CertificateRequestHistory> certificateRequestHistories = new ArrayList<>();
+
     public void login() {
 
         this.lastLoginTime = LocalDateTime.now();

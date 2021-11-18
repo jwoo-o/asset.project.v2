@@ -29,12 +29,10 @@ public class JwtTokenConfig {
     @Value("${spring.jwt.secret}")
     private String secretKey;
 
-    //private final long EXPIRATION_TIME = 1 * 60 * 1000L;
-
     @Value("${ext.token}")
     private String EXPIRATION_TIME;
 
-    private final String TOKEN_PREFIX = "Bearer ";
+    private String TOKEN_PREFIX = "Bearer ";
 
     @Value("${server.header.key}")
     private String headerKey;
@@ -101,30 +99,22 @@ public class JwtTokenConfig {
         String token = request.getHeader(headerKey);
 
 
-
-        Map<String, Object> result = new HashMap<String, Object>();
+        Map<String, Object> result = new HashMap<>();
         if (token != null) {
             token = token.replace(TOKEN_PREFIX, "");
 
-            if (Jwts.parser().isSigned(token)) {
-                if (validateToken(token)){
-                    String type = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().get("role") + "";
-                    if (type.equals("ROLE_ADMIN")){
-                        result.put("type", "admin");
-                        result.put("token", token);
-                    } else {
-                        result.put("type", "user");
-                        result.put("token", token);
-                    }
-
+            if (Jwts.parser().isSigned(token) && validateToken(token)) {
+                String type = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().get("role") + "";
+                if (type.equals("ROLE_ADMIN")) {
+                    result.put("type", "admin");
+                    result.put("token", token);
+                } else {
+                    result.put("type", "user");
+                    result.put("token", token);
                 }
             }
 
-        }/* else {
-            token = request.getHeader(clientKey);
-            result.put("type", "client");
-            result.put("token", token);
-        }*/
+        }
 
         return result;
     }
@@ -167,7 +157,7 @@ public class JwtTokenConfig {
     }
 
 
-    public String createUserToken(Map<String, Object> data,int date) {
+    public String createUserToken(Map<String, Object> data, int date) {
         Claims claims = Jwts.claims(data);
         Date now = new Date();
         return Jwts.builder()

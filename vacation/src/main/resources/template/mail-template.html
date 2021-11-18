@@ -7,14 +7,14 @@
 </head>
 <body>
 <table style="background-color: #FFFAE7;font-family: 맑은고딕, Malgun Gothic, dotum, gulim, sans-serif;width: 500px;border-collapse: collapse; padding: 0; margin: 0;">
-    <!--<tr>
+    <tr>
         <td>
-            <a href="#">
-                <img src="#" width="100"
+            <a href="http://vac.joeunins.com">
+                <img src="https://i.imgur.com/NTEzkub.png" width="100"
                      style="margin-top: 20px;margin-left: 10px;margin-bottom:10px;opacity: 70%;display: block;">
             </a>
         </td>
-    </tr>-->
+    </tr>
     <tr align="center">
         <td style="padding-top: 20px">
             <table width="400">
@@ -90,22 +90,27 @@
             </table>
         </td>
     </tr>
-    <tr th:if="${vacationId != null}" align="center">
+    <tr th:if="${state != null}" align="center">
         <td style="padding: 5px">
             <table width="400">
                 <tr align="right">
                     <td>
-                        <a th:href="@{${url}(approveState=REJECT,token=${token},orderPosition=${orderPosition},vacationId=${vacationId},vacationKind=${vacationKind})}">
+                        <a th:href="@{http://vac.joeunins.com/approve-mail(approveState=REJECT,token=${token},orderPosition=${orderPosition},vacationId=${vacationId},vacationKind=${vacationKind})}">
                             <img src="https://i.imgur.com/yNgoqE4.png" width="80"
                                  style="display: inline;">
                         </a>
-                        <a th:href="@{${url}(approveState=ING,token=${token},orderPosition=${orderPosition},vacationId=${vacationId},vacationKind=${vacationKind})}">
+                        <a th:href="@{http://vac.joeunins.com/approve-mail(approveState=ING,token=${token},orderPosition=${orderPosition},vacationId=${vacationId},vacationKind=${vacationKind})}">
                             <img src="https://i.imgur.com/8CdXY73.png" width="80"
                                  style="display: inline; margin-left: 10px;">
                         </a>
                     </td>
                 </tr>
             </table>
+        </td>
+    </tr>
+    <tr>
+        <td align="right" width="120px">
+            <img src="https://i.imgur.com/IJKi4oD.png" width="120">
         </td>
     </tr>
 </table>

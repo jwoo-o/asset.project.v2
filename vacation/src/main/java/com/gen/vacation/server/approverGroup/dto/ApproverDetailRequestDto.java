@@ -1,12 +1,10 @@
 package com.gen.vacation.server.approverGroup.dto;
 
+import com.gen.vacation.global.enums.DivisionEnum;
 import com.gen.vacation.global.domain.entity.ApproverDetail;
-import com.gen.vacation.global.domain.entity.ApproverGroup;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-
-import javax.persistence.*;
 
 /**
  * Created by dhwlsdn741@gmail.com
@@ -45,17 +43,11 @@ public class ApproverDetailRequestDto {
 
     private String email;
 
-
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "group_code", updatable = false, insertable = false)
-    private ApproverGroup approverGroup;
-
     public ApproverDetail toEntity() {
         return ApproverDetail.builder()
                 .approverDetailCode(approverDetailCode)
                 .approverGroupCode(approverGroupCode)
-                .division(division)
+                .division(DivisionEnum.valueOf(division))
                 .order(order)
                 .orgCode(orgCode)
                 .orgName(orgName)

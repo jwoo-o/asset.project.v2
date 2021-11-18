@@ -23,8 +23,9 @@ public class VacationInfoListResponseDto {
     private String userName;
     private String orgName;
     private boolean userDeadline;
-    private boolean sender;
+    private boolean userSender;
     private boolean adminDeadline;
+    private boolean adminSender;
     private String rankNm;
     private String jobNm;
     private LocalDate hireDate;
@@ -34,13 +35,14 @@ public class VacationInfoListResponseDto {
     private String vacationTotalCnt;
     private String vacationUseCnt;
 
-    public VacationInfoListResponseDto(String userId, String userName, String orgName, boolean userDeadline, boolean sender, boolean adminDeadline, String rankNm, String jobNm, LocalDate hireDate, LocalDate leaveDate, boolean useYn, String vacationTotalCnt, String vacationUseCnt) {
+    public VacationInfoListResponseDto(String userId, String userName, String orgName, boolean userDeadline, boolean userSender, boolean adminDeadline,boolean adminSender, String rankNm, String jobNm, LocalDate hireDate, LocalDate leaveDate, boolean useYn, String vacationTotalCnt, String vacationUseCnt) {
         this.userId = userId;
         this.userName = userName;
         this.orgName = orgName;
         this.userDeadline = userDeadline;
-        this.sender = sender;
+        this.userSender = userSender;
         this.adminDeadline = adminDeadline;
+        this.adminSender = adminSender;
         this.rankNm = rankNm;
         this.jobNm = jobNm;
         this.hireDate = hireDate;

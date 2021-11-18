@@ -1,6 +1,6 @@
 package com.gen.vacation.global.domain.entity.repositorys;
 
-import com.gen.vacation.global.Enum.ApprovalEnum;
+import com.gen.vacation.global.enums.ApprovalEnum;
 import com.gen.vacation.global.domain.entity.Vacation;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

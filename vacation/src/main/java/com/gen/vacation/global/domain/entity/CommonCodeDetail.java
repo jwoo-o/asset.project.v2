@@ -9,13 +9,10 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.domain.Persistable;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @NoArgsConstructor
 @Getter
 @Entity(name = "tb_code_detail")
-//@IdClass(CommonCodeDetailId.class)
 public class CommonCodeDetail extends BaseTimeEntity implements Persistable<CommonCodeDetailId> {
 
     @EmbeddedId

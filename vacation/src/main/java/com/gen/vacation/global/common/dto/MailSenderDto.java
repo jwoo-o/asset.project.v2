@@ -2,7 +2,6 @@ package com.gen.vacation.global.common.dto;
 
 import lombok.*;
 
-import java.util.List;
 import java.util.Map;
 
 /**

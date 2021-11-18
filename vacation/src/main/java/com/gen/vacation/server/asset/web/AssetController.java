@@ -2,7 +2,6 @@ package com.gen.vacation.server.asset.web;
 
 import com.gen.vacation.global.common.CommonResult;
 import com.gen.vacation.global.common.SingleResult;
-import com.gen.vacation.global.config.JwtTokenConfig;
 import com.gen.vacation.global.service.ResponseService;
 import com.gen.vacation.server.asset.dto.*;
 import com.gen.vacation.server.asset.service.AssetService;
@@ -10,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /**
@@ -28,8 +26,6 @@ public class AssetController {
     private final ResponseService responseService;
 
     private final AssetService assetService;
-
-    private final JwtTokenConfig jwtTokenConfig;
 
 
 

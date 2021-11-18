@@ -42,9 +42,7 @@ public class CustomMailSenderUtil {
             helper.setFrom(dto.getFrom());
 
             Context context = new Context();
-            dto.getData().entrySet().forEach(entry -> {
-                context.setVariable(entry.getKey(), entry.getValue());
-            });
+            dto.getData().forEach(context::setVariable);
             String html = templateEngine.process(dto.getTemplate(), context);
             helper.setText(html, true);
             javaMailSender.send(message);
@@ -69,9 +67,7 @@ public class CustomMailSenderUtil {
 
             Context context = new Context();
 
-            dto.getData().entrySet().forEach(entry -> {
-                context.setVariable(entry.getKey(), entry.getValue());
-            });
+            dto.getData().forEach(context::setVariable);
             String html = templateEngine.process(dto.getTemplate(), context);
 
             helper.setText(html, true);

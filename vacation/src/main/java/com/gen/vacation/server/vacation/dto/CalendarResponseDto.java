@@ -1,6 +1,6 @@
 package com.gen.vacation.server.vacation.dto;
 
-import com.gen.vacation.global.Enum.VacationKind;
+import com.gen.vacation.global.enums.VacationKind;
 import lombok.Getter;
 import lombok.Setter;
 

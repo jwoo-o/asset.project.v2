@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 /**
  * Created by dhwlsdn741@gmail.com
@@ -29,6 +28,10 @@ public class UserInfoResponseDto {
     private String tel;
     private String email;
     private LocalDate hireDate;
+    private LocalDate birthDate;
+    private String responsibilities;
+    private String address;
+    private String address1;
     private String imgSrc;
     private String fullCode;
     private String fullName;
@@ -37,6 +40,7 @@ public class UserInfoResponseDto {
     private boolean assetAdmin;
     private String mgrOrgCode;
     private String ex;
+    private boolean useYn;
 
     public UserInfoResponseDto(User user) {
         this.userId = user.getUserId();
@@ -50,6 +54,10 @@ public class UserInfoResponseDto {
         this.tel = user.getTel();
         this.email = user.getEmail();
         this.hireDate = user.getHireDate();
+        this.address = user.getAddress();
+        this.address1 = user.getAddress1();
+        this.responsibilities = user.getResponsibilities();
+        this.birthDate = user.getBirthDate();
         this.imgSrc = CommonUtil.checkDefaultNull(user.getProfileImage(),"");
         this.fullCode = user.getOrganization().getOrgFullCode();
         this.fullName = user.getOrganization().getOrgFullName();
@@ -58,6 +66,7 @@ public class UserInfoResponseDto {
         this.assetAdmin = user.isAssetAdmin();
         this.mgrOrgCode = user.getMgrOrgCode();
         this.ex = user.getEx();
+        this.useYn = user.isUseYn();
 
     }
 }

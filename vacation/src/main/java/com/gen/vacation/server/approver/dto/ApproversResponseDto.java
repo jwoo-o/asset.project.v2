@@ -1,6 +1,6 @@
 package com.gen.vacation.server.approver.dto;
 
-import com.gen.vacation.global.Enum.ApproverFlagEnum;
+import com.gen.vacation.global.enums.ApproverFlagEnum;
 import com.gen.vacation.global.domain.entity.Approver;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

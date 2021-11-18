@@ -1,13 +1,13 @@
 package com.gen.vacation.server.organization.dto;
 
 import com.gen.vacation.global.domain.entity.Organization;
-/*import com.gen.bluexray.global.domain.entity.OrganizationLevel;*/
 import com.gen.vacation.global.domain.entity.OrganizationLevel;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.Arrays;
 
 /**
  * Created by dhwlsdn741@gmail.com
@@ -63,11 +63,8 @@ public class OrganizationChartRequestDto {
     }
 
     public OrganizationLevel levelToEntity() {
-        String[] codes = new String[10];
         String[] fullCode = orgFullCode.split(",");
-        for (int i = 0; i < fullCode.length; i++) {
-            codes[i] = fullCode[i];
-        }
+        String[] codes = Arrays.copyOf(fullCode,10);
         return OrganizationLevel.builder()
                 .orgCode(orgCode)
                 .order(order)

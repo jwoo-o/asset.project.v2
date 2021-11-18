@@ -2,13 +2,11 @@ package com.gen.vacation.global.domain.entity.repositorys;
 
 
 import com.gen.vacation.global.domain.entity.User;
-import com.gen.vacation.server.user.dto.UserInfoResponseDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import javax.transaction.Transactional;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;

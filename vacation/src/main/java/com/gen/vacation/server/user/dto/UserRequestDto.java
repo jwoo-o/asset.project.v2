@@ -43,6 +43,12 @@ public class UserRequestDto {
     private boolean salt;
     @NotNull(message = "")
     private Timestamp hireDate;
+    @NotNull(message = "")
+    private Timestamp birthDate;
+    @NotNull(message = "")
+    private String address;
+    private String address1;
+    private String responsibilities;
     private Long seatId;
     private boolean admin;
     private boolean assetAdmin;
@@ -63,6 +69,10 @@ public class UserRequestDto {
                 .jobNm(jobNm)
                 .salt(salt)
                 .hireDate(hireDate.toLocalDateTime().toLocalDate())
+                .birthDate(birthDate.toLocalDateTime().toLocalDate())
+                .responsibilities(responsibilities)
+                .address(address)
+                .address1(address1)
                 .tel(tel)
                 .seatId(seatId)
                 .admin(admin)

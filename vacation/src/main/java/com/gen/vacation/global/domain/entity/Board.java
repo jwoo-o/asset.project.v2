@@ -1,6 +1,6 @@
 package com.gen.vacation.global.domain.entity;
 
-import com.gen.vacation.global.Enum.BoardEnum;
+import com.gen.vacation.global.enums.BoardEnum;
 import com.gen.vacation.global.domain.common.BaseEntity;
 import com.gen.vacation.server.board.dto.NoticeInfoRequestDto;
 import lombok.Builder;
@@ -90,7 +90,7 @@ public class Board extends BaseEntity {
     private Admin admin;
 
     @OneToMany(mappedBy = "board")
-    private List<BoardFile> boardFiles = new ArrayList<BoardFile>();
+    private List<BoardFile> boardFiles = new ArrayList<>();
 
 
     @Builder

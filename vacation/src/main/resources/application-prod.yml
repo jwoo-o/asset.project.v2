@@ -5,7 +5,7 @@ file:
     path: files
 spring:
   jwt:
-    secret: kljhsdghrkjghvkjhkjerhgkjer#$##$#
+    secret: joeunins
   datasource:
     driver-class-name: cubrid.jdbc.driver.CUBRIDDriver
     username: ${CUBRID_ENV_USER}
@@ -18,7 +18,7 @@ spring:
     show-sql: false
     generate-ddl: true
     hibernate:
-      dll-auto: none
+      ddl-auto: none
     properties:
       hibernate:
         format_sql: true
@@ -35,16 +35,14 @@ spring:
     active: prod
   mail:
     default-encoding: UTF-8
-    host: ${ENV_MAIL_HOST}
-    port: ${ENV_MAIL_PORT}
-    username: ${ENV_MAIL_USER}
-    password: ${ENV_MAIL_PASS}
+    host: mail.joeunins.com
+    port: 25
+    username: vacation
+    password: 1111
     properties:
       mail:
         smtp:
           auth: true
-          starttls:
-            enable: ${ENV_MAIL_TLS}
         transport:
           protocol: smtp
       debug: true

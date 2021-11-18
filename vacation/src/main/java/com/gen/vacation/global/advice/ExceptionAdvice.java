@@ -1,7 +1,7 @@
 package com.gen.vacation.global.advice;
 
 import com.gen.vacation.global.common.ErrorResult;
-import com.gen.vacation.global.contant.ErrorContant;
+import com.gen.vacation.global.contant.ErrorConstant;
 import com.gen.vacation.global.exception.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,8 +33,8 @@ public class ExceptionAdvice {
         ErrorResult error = new ErrorResult();
 
         error.setError("Unauthorized");
-        error.setCode(ErrorContant.UNAUTHORIZED);
-        error.setMessage(ErrorContant.getMessage(error.getCode()));
+        error.setCode(ErrorConstant.UNAUTHORIZED);
+        error.setMessage(ErrorConstant.getMessage(error.getCode()));
 
 
         return error;
@@ -45,8 +45,8 @@ public class ExceptionAdvice {
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         ErrorResult error = new ErrorResult();
         error.setError("Unauthorized");
-        error.setCode(ErrorContant.WRNG_LOGIN);
-        error.setMessage(ErrorContant.getMessage(error.getCode()));
+        error.setCode(ErrorConstant.WRNG_LOGIN);
+        error.setMessage(ErrorConstant.getMessage(error.getCode()));
 
         return error;
     }
@@ -55,8 +55,8 @@ public class ExceptionAdvice {
         response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         ErrorResult error = new ErrorResult();
         error.setError("Not Delete");
-        error.setCode(ErrorContant.NOT_DELETE);
-        error.setMessage(ErrorContant.getMessage(error.getCode()));
+        error.setCode(ErrorConstant.NOT_DELETE);
+        error.setMessage(ErrorConstant.getMessage(error.getCode()));
 
         return error;
     }
@@ -65,7 +65,7 @@ public class ExceptionAdvice {
         response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         ErrorResult error = new ErrorResult();
         error.setError("Fail");
-        error.setCode(ErrorContant.FAIL);
+        error.setCode(ErrorConstant.FAIL);
         error.setMessage(e.getMessage());
 
         return error;
@@ -78,8 +78,8 @@ public class ExceptionAdvice {
         response.setStatus(HttpServletResponse.SC_CONFLICT);
         ErrorResult error = new ErrorResult();
         error.setError("conflict");
-        error.setCode(ErrorContant.REGISTERED);
-        error.setMessage(ErrorContant.getMessage(error.getCode()));
+        error.setCode(ErrorConstant.REGISTERED);
+        error.setMessage(ErrorConstant.getMessage(error.getCode()));
 
 
         return error;
@@ -89,8 +89,8 @@ public class ExceptionAdvice {
         response.setStatus(HttpServletResponse.SC_CONFLICT);
         ErrorResult error = new ErrorResult();
         error.setError("conflict");
-        error.setCode(ErrorContant.PROCESSED);
-        error.setMessage(ErrorContant.getMessage(error.getCode()));
+        error.setCode(ErrorConstant.PROCESSED);
+        error.setMessage(ErrorConstant.getMessage(error.getCode()));
 
         return error;
     }
@@ -103,7 +103,7 @@ public class ExceptionAdvice {
         response.setStatus(HttpServletResponse.SC_CONFLICT);
         ErrorResult error = new ErrorResult();
         error.setError("conflict");
-        error.setCode(ErrorContant.REGISTERED);
+        error.setCode(ErrorConstant.REGISTERED);
         error.setMessage("");
 
 
@@ -116,8 +116,8 @@ public class ExceptionAdvice {
         ErrorResult error = new ErrorResult();
 
         error.setError("Unauthorized");
-        error.setCode(ErrorContant.WRNG_LOGIN);
-        error.setMessage(ErrorContant.getMessage(error.getCode()));
+        error.setCode(ErrorConstant.WRNG_LOGIN);
+        error.setMessage(ErrorConstant.getMessage(error.getCode()));
 
 
         return error;
@@ -128,8 +128,8 @@ public class ExceptionAdvice {
         response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         ErrorResult error = new ErrorResult();
         error.setError("No Content");
-        error.setCode(ErrorContant.NOT_FOUND);
-        error.setMessage(ErrorContant.getMessage(error.getCode()));
+        error.setCode(ErrorConstant.NOT_FOUND);
+        error.setMessage(ErrorConstant.getMessage(error.getCode()));
 
 
         return error;
@@ -139,8 +139,8 @@ public class ExceptionAdvice {
         response.setStatus(HttpServletResponse.SC_FORBIDDEN);
         ErrorResult error = new ErrorResult();
         error.setError("Not Found License");
-        error.setCode(ErrorContant.NOT_FOUND_LICENSE);
-        error.setMessage(ErrorContant.getMessage(error.getCode()));
+        error.setCode(ErrorConstant.NOT_FOUND_LICENSE);
+        error.setMessage(ErrorConstant.getMessage(error.getCode()));
 
 
         return error;
@@ -152,8 +152,8 @@ public class ExceptionAdvice {
         ErrorResult error = new ErrorResult();
 
         error.setError("valid fail");
-        error.setCode(ErrorContant.EMPTY_REQUIRED);
-        error.setMessage(ErrorContant.getMessage(error.getCode()));
+        error.setCode(ErrorConstant.EMPTY_REQUIRED);
+        error.setMessage(ErrorConstant.getMessage(error.getCode()));
 
 
         return error;
@@ -166,8 +166,8 @@ public class ExceptionAdvice {
         ErrorResult error = new ErrorResult();
 
         error.setError("Integrity violation");
-        error.setCode(ErrorContant.INTEGRITY_VIOLATION);
-        error.setMessage(ErrorContant.getMessage(error.getCode()));
+        error.setCode(ErrorConstant.INTEGRITY_VIOLATION);
+        error.setMessage(ErrorConstant.getMessage(error.getCode()));
 
         return error;
     }
@@ -182,8 +182,8 @@ public class ExceptionAdvice {
 
         ErrorResult error = new ErrorResult();
         error.setError("BAD Request");
-        error.setCode(ErrorContant.SYSTEM_ERROR);
-        error.setMessage(ErrorContant.getMessage(error.getCode()));
+        error.setCode(ErrorConstant.SYSTEM_ERROR);
+        error.setMessage(ErrorConstant.getMessage(error.getCode()));
 
 
         return error;
@@ -198,8 +198,8 @@ public class ExceptionAdvice {
 
         ErrorResult error = new ErrorResult();
         error.setError("NOT APPROVERGROUP");
-        error.setCode(ErrorContant.NOT_APPROVERGROUP);
-        error.setMessage(ErrorContant.getMessage(error.getCode()));
+        error.setCode(ErrorConstant.NOT_APPROVERGROUP);
+        error.setMessage(ErrorConstant.getMessage(error.getCode()));
 
 
         return error;

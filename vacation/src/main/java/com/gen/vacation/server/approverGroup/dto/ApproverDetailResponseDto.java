@@ -42,7 +42,7 @@ public class ApproverDetailResponseDto {
     public ApproverDetailResponseDto(ApproverDetail approverDetail) {
         this.approverDetailCode = approverDetail.getApproverDetailCode();
         this.approverGroupCode = approverDetail.getApproverGroupCode();
-        this.division = approverDetail.getDivision();
+        this.division = approverDetail.getDivision().name();
         this.order = approverDetail.getOrder();
         this.orgCode = approverDetail.getOrgCode();
         this.orgName = approverDetail.getOrgName();

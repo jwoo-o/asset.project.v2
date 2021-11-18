@@ -1,13 +1,12 @@
 package com.gen.vacation.global.domain.entity;
 
-import com.gen.vacation.global.Enum.LoginHistoryEnum;
+import com.gen.vacation.global.domain.common.BooleanToYNConverter;
+import com.gen.vacation.global.enums.LoginHistoryEnum;
 import com.gen.vacation.global.domain.common.BaseTimeEntity;
 import com.gen.vacation.global.domain.entity.id.VacationDeadlineId;
-import com.gen.vacation.global.domain.entity.id.VacationInfoId;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -29,13 +28,26 @@ public class VacationDeadline extends BaseTimeEntity {
     @Column(name = "deadlines",length = 2056)
     private String deadlines;
 
+    /**
+     * 암호화 유무
+     */
+    @Convert(converter = BooleanToYNConverter.class)
+    @Column(length = 2)
+    private boolean confirm;
+
     @Builder
-    public VacationDeadline(VacationDeadlineId id, String deadlines, LoginHistoryEnum writeType) {
+    public VacationDeadline(VacationDeadlineId id, String deadlines, LoginHistoryEnum writeType, boolean confirm) {
         this.id = id;
         this.deadlines = deadlines;
+        this.confirm = confirm;
     }
 
     public void update(String deadlines) {
         this.deadlines = deadlines;
+        this.confirm = true;
+    }
+
+    public void updateConfirm() {
+        this.confirm = true;
     }
 }

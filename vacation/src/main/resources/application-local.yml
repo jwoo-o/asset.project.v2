@@ -6,12 +6,12 @@ file:
 
 spring:
   jwt:
-    secret: jwooooooootest
+    secret: joeunins
   datasource:
     driver-class-name: cubrid.jdbc.driver.CUBRIDDriver
-    username: dba
+    username: joeunins
     password: 12qw12qw`
-    url: jdbc:cubrid:localhost:33000:asset_vacation:::?charset=UTF-8
+    url: jdbc:cubrid:localhost:33000:joeunins_vacation:::?charset=UTF-8
     hikari:
       connection-test-query: select 1
   jpa:
@@ -19,7 +19,7 @@ spring:
     show-sql: true
     generate-ddl: true
     hibernate:
-      dll-auto: update
+      ddl-auto: update
     properties:
       hibernate:
         format_sql: true
@@ -39,8 +39,8 @@ spring:
     active: local
   mail:
     default-encoding: UTF-8
-    host: smtp.google.com
-    port: 465
+    host: mail.joeunins.com
+    port: 25
     properties:
       mail:
         smtp:
@@ -48,8 +48,8 @@ spring:
         transport:
           protocol: smtp
       debug: true
-    username: user
-    password: pass
+    username: vacation
+    password: 1111
   thymeleaf:
     prefix: classpath:/template/
     suffix: .html

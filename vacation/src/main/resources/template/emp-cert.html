@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style type="text/css">
+        .font12
+        {color:windowtext;
+            font-size:12.0pt;
+            font-weight:400;
+            font-style:normal;
+            text-decoration:none;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;}
+        .font13
+        {color:windowtext;
+            font-size:13.0pt;
+            font-weight:400;
+            font-style:normal;
+            text-decoration:none;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;}
+        td
+        {mso-style-parent:style0;
+            padding:0px;
+            mso-ignore:padding;
+            color:windowtext;
+            font-size:9.0pt;
+            font-weight:400;
+            font-style:normal;
+            text-decoration:none;
+            font-family:굴림, monospace;
+            mso-font-charset:129;
+            mso-number-format:General;
+            vertical-align:middle;
+            border:none;
+            mso-background-source:auto;
+            mso-pattern:auto;
+            mso-protection:locked visible;
+            white-space:nowrap;
+            mso-rotate:0;}
+        .xl66
+        {mso-style-parent:style0;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;}
+        .xl67
+        {mso-style-parent:style0;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            border-top:none;
+            border-right:none;
+            border-bottom:1.0pt solid windowtext;
+            border-left:none;}
+        .xl68
+        {mso-style-parent:style0;
+            font-size:10.0pt;
+            font-weight:700;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            text-align:center;
+            border-top:none;
+            border-right:none;
+            border-bottom:none;
+            border-left:1.0pt solid windowtext;}
+        .xl69
+        {mso-style-parent:style0;
+            font-size:10.0pt;
+            font-weight:700;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;}
+        .xl70
+        {mso-style-parent:style0;
+            font-size:10.0pt;
+            font-weight:700;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            border-top:none;
+            border-right:1.0pt solid windowtext;
+            border-bottom:none;
+            border-left:none;}
+        .xl71
+        {mso-style-parent:style0;
+            font-size:10.0pt;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            border-top:none;
+            border-right:none;
+            border-bottom:none;
+            border-left:1.0pt solid windowtext;}
+        .xl72
+        {mso-style-parent:style0;
+            font-size:10.0pt;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;}
+        .xl73
+        {mso-style-parent:style0;
+            font-size:10.0pt;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            border-top:none;
+            border-right:1.0pt solid windowtext;
+            border-bottom:none;
+            border-left:none;}
+        .xl74
+        {mso-style-parent:style0;
+            font-size:10.0pt;
+            font-weight:700;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            text-align:left;
+            border-top:none;
+            border-right:none;
+            border-bottom:none;
+            border-left:1.0pt solid windowtext;
+            padding-left:144px;
+            mso-char-indent-count:12;}
+        .xl75
+        {mso-style-parent:style0;
+            font-size:10.0pt;
+            font-weight:700;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            text-align:left;
+            padding-left:144px;
+            mso-char-indent-count:12;}
+        .xl76
+        {mso-style-parent:style0;
+            font-size:10.0pt;
+            font-weight:700;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            text-align:left;
+            border-top:none;
+            border-right:1.0pt solid windowtext;
+            border-bottom:none;
+            border-left:none;
+            padding-left:144px;
+            mso-char-indent-count:12;}
+        .xl77
+        {mso-style-parent:style0;
+            font-size:10.0pt;
+            font-weight:700;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            border-top:none;
+            border-right:none;
+            border-bottom:none;
+            border-left:1.0pt solid windowtext;}
+        .xl78
+        {mso-style-parent:style0;
+            font-size:10.0pt;
+            font-weight:700;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            text-align:left;
+            padding-left:24px;
+            mso-char-indent-count:2;}
+        .xl79
+        {mso-style-parent:style0;
+            font-size:10.0pt;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            border-top:none;
+            border-right:none;
+            border-bottom:1.0pt solid windowtext;
+            border-left:1.0pt solid windowtext;}
+        .xl80
+        {mso-style-parent:style0;
+            font-size:10.0pt;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            border-top:none;
+            border-right:none;
+            border-bottom:1.0pt solid windowtext;
+            border-left:none;}
+        .xl81
+        {mso-style-parent:style0;
+            font-size:10.0pt;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            border-top:none;
+            border-right:1.0pt solid windowtext;
+            border-bottom:1.0pt solid windowtext;
+            border-left:none;}
+        .xl82
+        {mso-style-parent:style16;
+            font-size:12.0pt;
+            font-weight:700;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            mso-number-format:"\@";
+            text-align:center;
+            border-top:1.0pt solid windowtext;
+            border-right:.5pt solid windowtext;
+            border-bottom:.5pt solid windowtext;
+            border-left:1.0pt solid windowtext;}
+        .xl83
+        {mso-style-parent:style0;
+            font-size:12.0pt;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            text-align:center;
+            border-top:1.0pt solid windowtext;
+            border-right:.5pt solid windowtext;
+            border-bottom:.5pt solid windowtext;
+            border-left:.5pt solid windowtext;}
+        .xl84
+        {mso-style-parent:style0;
+            font-size:12.0pt;
+            font-weight:700;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            text-align:center;
+            border-top:1.0pt solid windowtext;
+            border-right:.5pt solid windowtext;
+            border-bottom:.5pt solid windowtext;
+            border-left:.5pt solid windowtext;}
+        .xl85
+        {mso-style-parent:style0;
+            font-size:12.0pt;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            mso-number-format:"yyyy\0022년\0022\\ m\0022월\0022\\ d\0022일\0022\;\@";
+            text-align:center;
+            border-top:1.0pt solid windowtext;
+            border-right:1.0pt solid windowtext;
+            border-bottom:.5pt solid windowtext;
+            border-left:.5pt solid windowtext;}
+        .xl86
+        {mso-style-parent:style16;
+            font-size:12.0pt;
+            font-weight:700;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            mso-number-format:"\@";
+            text-align:center;
+            border-top:.5pt solid windowtext;
+            border-right:.5pt solid windowtext;
+            border-bottom:.5pt solid windowtext;
+            border-left:1.0pt solid windowtext;}
+        .xl87
+        {mso-style-parent:style16;
+            font-size:12.0pt;
+            font-weight:700;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            mso-number-format:"_-* \#\,\#\#0_-\;\\-* \#\,\#\#0_-\;_-* \0022-\0022_-\;_-\@_-";
+            text-align:center;
+            border-top:.5pt solid windowtext;
+            border-right:.5pt solid windowtext;
+            border-bottom:.5pt solid windowtext;
+            border-left:1.0pt solid windowtext;}
+        .xl88
+        {mso-style-parent:style0;
+            font-size:12.0pt;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            text-align:center;
+            border:.5pt solid windowtext;}
+        .xl89
+        {mso-style-parent:style0;
+            font-size:12.0pt;
+            font-weight:700;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            text-align:center;
+            border:.5pt solid windowtext;}
+        .xl90
+        {mso-style-parent:style0;
+            font-size:12.0pt;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            text-align:center;
+            border-top:.5pt solid windowtext;
+            border-right:1.0pt solid windowtext;
+            border-bottom:.5pt solid windowtext;
+            border-left:.5pt solid windowtext;}
+        .xl91
+        {mso-style-parent:style0;
+            color:red;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;}
+        .xl92
+        {mso-style-parent:style0;
+            font-size:30.0pt;
+            font-weight:700;
+            text-decoration:underline;
+            text-underline-style:double;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            text-align:center;
+            vertical-align:bottom;}
+        .xl93
+        {mso-style-parent:style0;
+            font-size:13.0pt;
+            font-weight:700;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            text-align:center;
+            border-top:none;
+            border-right:none;
+            border-bottom:none;
+            border-left:1.0pt solid windowtext;}
+        .xl94
+        {mso-style-parent:style0;
+            font-size:13.0pt;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            text-align:center;}
+        .xl95
+        {mso-style-parent:style0;
+            font-size:13.0pt;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            text-align:center;
+            border-top:none;
+            border-right:1.0pt solid windowtext;
+            border-bottom:none;
+            border-left:none;}
+        .xl96
+        {mso-style-parent:style0;
+            font-size:12.0pt;
+            font-weight:700;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            text-align:center;
+            border-top:none;
+            border-right:none;
+            border-bottom:none;
+            border-left:1.0pt solid windowtext;}
+        .xl97
+        {mso-style-parent:style0;
+            font-size:12.0pt;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            text-align:center;}
+        .xl98
+        {mso-style-parent:style0;
+            font-size:12.0pt;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            text-align:center;
+            border-top:none;
+            border-right:1.0pt solid windowtext;
+            border-bottom:none;
+            border-left:none;}
+        .xl99
+        {mso-style-parent:style0;
+            font-size:13.0pt;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            text-align:center;
+            border-top:none;
+            border-right:none;
+            border-bottom:none;
+            border-left:1.0pt solid windowtext;}
+        .xl100
+        {mso-style-parent:style0;
+            font-size:12.0pt;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            text-align:left;
+            border-top:.5pt solid windowtext;
+            border-right:none;
+            border-bottom:.5pt solid windowtext;
+            border-left:.5pt solid windowtext;
+            white-space:nowrap;
+            mso-text-control:shrinktofit;
+            padding-left:12px;
+            mso-char-indent-count:1;}
+        .xl101
+        {mso-style-parent:style0;
+            font-size:12.0pt;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            text-align:left;
+            border-top:.5pt solid windowtext;
+            border-right:none;
+            border-bottom:.5pt solid windowtext;
+            border-left:none;
+            white-space:nowrap;
+            mso-text-control:shrinktofit;
+            padding-left:12px;
+            mso-char-indent-count:1;}
+        .xl102
+        {mso-style-parent:style0;
+            font-size:12.0pt;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            text-align:left;
+            border-top:.5pt solid windowtext;
+            border-right:1.0pt solid windowtext;
+            border-bottom:.5pt solid windowtext;
+            border-left:none;
+            white-space:nowrap;
+            mso-text-control:shrinktofit;
+            padding-left:12px;
+            mso-char-indent-count:1;}
+        .xl103
+        {mso-style-parent:style0;
+            font-size:12.0pt;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            mso-number-format:"yyyy\0022년\0022\\ \\ \\ \\ mm\0022월\0022\\ \\ \\ \\ dd\0022일\0022\;\@";
+            text-align:center;
+            border-top:none;
+            border-right:none;
+            border-bottom:none;
+            border-left:1.0pt solid windowtext;}
+        .xl104
+        {mso-style-parent:style0;
+            font-size:12.0pt;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            mso-number-format:"yyyy\0022년\0022\\ \\ \\ \\ mm\0022월\0022\\ \\ \\ \\ dd\0022일\0022\;\@";
+            text-align:center;}
+        .xl105
+        {mso-style-parent:style0;
+            font-size:12.0pt;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            mso-number-format:"yyyy\0022년\0022\\ \\ \\ \\ mm\0022월\0022\\ \\ \\ \\ dd\0022일\0022\;\@";
+            text-align:center;
+            border-top:none;
+            border-right:1.0pt solid windowtext;
+            border-bottom:none;
+            border-left:none;}
+        .xl106
+        {mso-style-parent:style0;
+            font-size:12.0pt;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            text-align:left;
+            border:.5pt solid windowtext;
+            padding-left:12px;
+            mso-char-indent-count:1;}
+        .xl107
+        {mso-style-parent:style0;
+            font-size:12.0pt;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            text-align:left;
+            border-top:.5pt solid windowtext;
+            border-right:1.0pt solid windowtext;
+            border-bottom:.5pt solid windowtext;
+            border-left:.5pt solid windowtext;
+            padding-left:12px;
+            mso-char-indent-count:1;}
+        .xl108
+        {mso-style-parent:style0;
+            font-size:12.0pt;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            text-align:left;
+            border-top:.5pt solid windowtext;
+            border-right:none;
+            border-bottom:.5pt solid windowtext;
+            border-left:.5pt solid windowtext;
+            white-space:normal;
+            padding-left:12px;
+            mso-char-indent-count:1;}
+        .xl109
+        {mso-style-parent:style0;
+            font-size:12.0pt;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            text-align:left;
+            border-top:.5pt solid windowtext;
+            border-right:none;
+            border-bottom:.5pt solid windowtext;
+            border-left:none;
+            white-space:normal;
+            padding-left:12px;
+            mso-char-indent-count:1;}
+        .xl110
+        {mso-style-parent:style0;
+            font-size:12.0pt;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            text-align:left;
+            border-top:.5pt solid windowtext;
+            border-right:1.0pt solid windowtext;
+            border-bottom:.5pt solid windowtext;
+            border-left:none;
+            white-space:normal;
+            padding-left:12px;
+            mso-char-indent-count:1;}
+        .xl111
+        {mso-style-parent:style0;
+            font-size:12.0pt;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            mso-number-format:"yyyy\0022년\0022\\ m\0022월\0022\\ d\0022일\0022\;\@";
+            text-align:center;
+            border-top:.5pt solid windowtext;
+            border-right:none;
+            border-bottom:.5pt solid windowtext;
+            border-left:.5pt solid windowtext;}
+        .xl112
+        {mso-style-parent:style0;
+            font-size:12.0pt;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            mso-number-format:"yyyy\0022년\0022\\ m\0022월\0022\\ d\0022일\0022\;\@";
+            text-align:center;
+            border-top:.5pt solid windowtext;
+            border-right:none;
+            border-bottom:.5pt solid windowtext;
+            border-left:none;}
+        .xl113
+        {mso-style-parent:style0;
+            font-size:12.0pt;
+            font-family:"맑은 고딕", monospace;
+            mso-font-charset:129;
+            mso-number-format:"yyyy\0022년\0022\\ m\0022월\0022\\ d\0022일\0022\;\@";
+            text-align:center;
+            border-top:.5pt solid windowtext;
+            border-right:1.0pt solid windowtext;
+            border-bottom:.5pt solid windowtext;
+            border-left:none;}
+        .content {
+            position: relative;
+        }
+
+    </style>
+    <style type="text/css" media="print">
+        .background {
+            background-image: url(https://i.imgur.com/8vy557G.png);
+            position: absolute;
+            left: 15%;
+            top: 30%;
+            width: 480px;
+            height: 470px;
+            -webkit-print-color-adjust:exact;
+            z-index: -1;
+        }
+    </style>
+    <title>경력증명서</title>
+</head>
+<body link=blue vlink=purple class=xl66>
+<img src="https://i.imgur.com/8vy557G.png" style="width:1px">
+<div class="content">
+    <div class="background"></div>
+<table border=0 cellpadding=0 cellspacing=0 width=742 style='border-collapse:
+ collapse;table-layout:fixed;width:558pt'>
+    <col class=xl66 width=89 style='mso-width-source:userset;mso-width-alt:3797;
+ width:67pt'>
+    <col class=xl66 width=226 style='mso-width-source:userset;mso-width-alt:9642;
+ width:170pt'>
+    <col class=xl66 width=89 style='mso-width-source:userset;mso-width-alt:3797;
+ width:67pt'>
+    <col class=xl66 width=226 style='mso-width-source:userset;mso-width-alt:9642;
+ width:170pt'>
+    <tr height=83 style='mso-height-source:userset;height:62.25pt'>
+        <td colspan=4 height=83 class=xl92 width=630 style='height:62.25pt;width:474pt'>
+            <a name="Print_Area">재 직 증 명 서</a>
+        </td>
+    </tr>
+    <tr height=72 style='mso-height-source:userset;height:54.0pt'>
+        <td height=72 class=xl67 style='height:54.0pt'>　</td>
+        <td class=xl67>　</td>
+        <td class=xl67>　</td>
+        <td class=xl67>　</td>
+    </tr>
+    <tr height=41 style='mso-height-source:userset;height:30.75pt'>
+        <td height=41 class=xl82 style='height:30.75pt;border-top:none'>성<span
+                style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>명<span
+                style='mso-spacerun:yes'>&nbsp;</span></td>
+        <td class=xl83 style='border-top:none;border-left:none'><span th:text="${name}"></span></td>
+        <td class=xl84 style='border-top:none;border-left:none'>생년월일</td>
+        <td class=xl85 style='border-top:none;border-left:none'><span th:text="${birthDate}"></span></td>
+    </tr>
+    <tr height=41 style='mso-height-source:userset;height:30.75pt'>
+        <td height=41 class=xl86 style='height:30.75pt;border-top:none'>주<span
+                style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>소<span
+                style='mso-spacerun:yes'>&nbsp;</span></td>
+        <td colspan=3 class=xl100 style='border-right:1.0pt solid black;border-left:
+  none'><span th:text="${address}"></span></td>
+    </tr>
+    <tr height=41 style='mso-height-source:userset;height:30.75pt'>
+        <td height=41 class=xl87 style='height:30.75pt;border-top:none'><span
+                style='mso-spacerun:yes'>&nbsp;</span>직<span
+                style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>급<span
+                style='mso-spacerun:yes'>&nbsp;&nbsp;</span></td>
+        <td class=xl88 style='border-top:none;border-left:none'><span th:text="${rankNm}"></span></td>
+        <td class=xl89 style='border-top:none;border-left:none'>부<span
+                style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>서<span
+                style='mso-spacerun:yes'>&nbsp;</span></td>
+        <td class=xl90 style='border-top:none;border-left:none'><span th:text="${orgNm}"></span></td>
+    </tr>
+    <tr height=41 style='mso-height-source:userset;height:30.75pt'>
+        <td height=41 class=xl86 style='height:30.75pt;border-top:none'>재직 기간<span
+                style='mso-spacerun:yes'>&nbsp;</span></td>
+        <td colspan=3 class=xl111 style='border-right:1.0pt solid black;border-left:
+  none'><span th:text="${period}"></span></td>
+    </tr>
+    <tr height=41 style='mso-height-source:userset;height:30.75pt'>
+        <td height=41 class=xl86 style='height:30.75pt;border-top:none'>담당 업무<span
+                style='mso-spacerun:yes'>&nbsp;</span></td>
+        <td colspan=3 class=xl106 style='border-right:1.0pt solid black;border-left:
+  none'><span th:text="${responsibilities}"></span></td>
+       
+       
+    </tr>
+    <tr height=41 style='mso-height-source:userset;height:30.75pt'>
+        <td height=41 class=xl86 style='height:30.75pt;border-top:none'>용<span
+                style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>도<span
+                style='mso-spacerun:yes'>&nbsp;</span></td>
+        <td colspan=3 class=xl108 width=541 style='border-right:1.0pt solid black;
+  border-left:none;width:407pt'><span th:text="${purpose}"></span></td>
+       
+       
+    </tr>
+    <tr height=41 style='mso-height-source:userset;height:30.75pt'>
+        <td height=41 class=xl86 style='height:30.75pt;border-top:none'>제<span
+                style='mso-spacerun:yes'>&nbsp; </span>출<span style='mso-spacerun:yes'>&nbsp;
+  </span>처<span style='mso-spacerun:yes'>&nbsp;</span></td>
+        <td colspan=3 class=xl108 width=541 style='border-right:1.0pt solid black;
+  border-left:none;width:407pt'><span th:text="${submit}"></span></td>
+       
+       
+    </tr>
+    <tr height=37 style='mso-height-source:userset;height:27.75pt'>
+        <td height=37 class=xl68 style='height:27.75pt'>　</td>
+        <td class=xl69></td>
+        <td class=xl69></td>
+        <td class=xl70></td>
+    </tr>
+    <tr height=37 style='mso-height-source:userset;height:27.75pt'>
+        <td height=37 class=xl68 style='height:27.75pt'>　</td>
+        <td class=xl69></td>
+        <td class=xl69></td>
+        <td class=xl70></td>
+    </tr>
+    <tr height=57 style='mso-height-source:userset;height:42.75pt'>
+        <td height=57 class=xl71 style='height:42.75pt'>　</td>
+        <td class=xl72></td>
+        <td class=xl72></td>
+        <td class=xl73></td>
+    </tr>
+    <tr height=27 style='mso-height-source:userset;height:20.25pt'>
+        <td colspan=4 height=27 class=xl99 style='border-right:1.0pt solid black;
+  height:20.25pt'>위 사람은 상기와 같이 경력이 있음을 증명합니다.</td>
+       
+       
+    </tr>
+    <tr height=42 style='mso-height-source:userset;height:31.5pt'>
+        <td height=42 class=xl71 style='height:31.5pt'>　</td>
+        <td class=xl72></td>
+        <td class=xl72></td>
+        <td class=xl73></td>
+    </tr>
+    <tr height=51 style='mso-height-source:userset;height:38.25pt'>
+        <td height=51 class=xl71 style='height:38.25pt'>　</td>
+        <td class=xl72></td>
+        <td class=xl72></td>
+        <td class=xl73></td>
+    </tr>
+    <tr height=27 style='mso-height-source:userset;height:20.25pt'>
+        <td colspan=4 height=27 class=xl103 style='border-right:1.0pt solid black;
+  height:20.25pt'><span th:text="${now}"></span></td>
+    </tr>
+    <tr height=73 style='mso-height-source:userset;height:54.75pt'>
+        <td height=73 class=xl71 style='height:54.75pt'></td>
+        <td class=xl72></td>
+        <td class=xl72></td>
+        <td class=xl73></td>
+    </tr>
+    <tr height=38 style='mso-height-source:userset;height:28.5pt'>
+        <td colspan=4 height=38 class=xl96 style='border-right:1.0pt solid black;height:28.5pt'>
+           <span style='mso-spacerun:yes'>주&nbsp;&nbsp;&nbsp;&nbsp;소</span>
+            <font class="font12">
+                <span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span th:text="${company_address}"></span>
+            </font>
+        </td>
+       
+       
+    </tr>
+   <tr>
+        <td colspan=4 height=38 class=xl93 width=630 style='border-right:1.0pt solid black;
+        height:28.5pt;width:474pt'>
+            <span style='mso-spacerun:yes'>
+                회 사 명
+            </span>
+            <font class="font13">
+                <span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                <span th:text="${company_name}"></span>
+            </font>
+        </td>
+   </tr>
+    <tr height=38 style='mso-height-source:userset;height:28.5pt'>
+        <td colspan=4 height=38 class=xl93 style='border-right:1.0pt solid black;height:28.5pt'>
+            <span style='mso-spacerun:yes'>
+              대표이사
+            </span>
+            <font class="font13">
+                <span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <span th:text="${company_ceo}"></span>
+                <span style='mso-spacerun:yes'>&nbsp;(인)</span>
+                <img th:if="${seal == true}" style='position:absolute;z-index:1;width:105px;height:105px;margin-left: -60px;margin-top: -40px;' src="https://i.imgur.com/mJtCAEG.png">
+            </font>
+        </td>
+    </tr>
+    <tr height=38 style='mso-height-source:userset;height:28.5pt'>
+        <td height=38 class=xl74 style='height:28.5pt'></td>
+        <td class=xl75></td>
+        <td class=xl75></td>
+        <td class=xl76></td>
+    </tr>
+    <tr height=38 style='mso-height-source:userset;height:28.5pt'>
+        <td height=38 class=xl77 style='height:28.5pt'></td>
+        <td class=xl78></td>
+        <td class=xl69></td>
+        <td class=xl73></td>
+    </tr>
+    <tr height=19 style='height:14.25pt'>
+        <td height=19 class=xl79 style='height:14.25pt'></td>
+        <td class=xl80></td>
+        <td class=xl80></td>
+        <td class=xl81></td>
+
+
+    </tr>
+</table>
+</div>
+</body>
+</html>

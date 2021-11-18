@@ -11,6 +11,9 @@ import java.security.NoSuchAlgorithmException;
  */
 public class SHA256Util {
 
+    private SHA256Util() { throw new IllegalStateException("Utility class"); }
+
+
     /**
      * SHA-256 암호화 함
      * @param source 원본
@@ -44,7 +47,7 @@ public class SHA256Util {
 
             byte[] byteData = md.digest();
 
-            StringBuffer sb = new StringBuffer();
+            StringBuilder sb = new StringBuilder();
             for (int i = 0; i < byteData.length; i++) {
                 sb.append(Integer.toString((byteData[i] & 0xFF) + 256, 16).substring(1));
             }

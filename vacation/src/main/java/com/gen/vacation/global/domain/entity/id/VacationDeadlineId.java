@@ -1,6 +1,6 @@
 package com.gen.vacation.global.domain.entity.id;
 
-import com.gen.vacation.global.Enum.LoginHistoryEnum;
+import com.gen.vacation.global.enums.LoginHistoryEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

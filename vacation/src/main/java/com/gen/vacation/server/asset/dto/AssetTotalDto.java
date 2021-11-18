@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Map;
+
 /**
  * Created by dhwlsdn741@gmail.com
  * User: jinwoo
@@ -19,4 +21,10 @@ public class AssetTotalDto {
 
     private String name;
     private Long value;
+
+    public AssetTotalDto(Map.Entry<String, Long> map) {
+
+        this.name = map.getKey();
+        this.value = map.getValue();
+    }
 }

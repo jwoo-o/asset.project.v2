@@ -3,6 +3,7 @@ package com.gen.vacation.global.config.security;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 
 
@@ -11,10 +12,10 @@ import java.security.MessageDigest;
 public class PasswordEncoder {
 
     public String encoder(String pwd) {
-        StringBuffer hexString = new StringBuffer();
+        StringBuilder hexString = new StringBuilder();
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            byte[] hash = digest.digest(pwd.getBytes("UTF-8"));
+            byte[] hash = digest.digest(pwd.getBytes(StandardCharsets.UTF_8));
 
 
             for (int i = 0; i < hash.length; i++) {

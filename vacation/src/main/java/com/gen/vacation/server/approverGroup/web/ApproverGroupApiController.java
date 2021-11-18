@@ -64,7 +64,6 @@ public class ApproverGroupApiController {
     @PutMapping("/approver")
     public CommonResult putApprover(@RequestBody ApproverGroupRequestDto dto) throws Exception {
 
-        /*approverGroupService.insApproverGroup(dto);*/
         approverGroupService.updApproverGroup(dto);
         return responseService.getSuccessResult();
     }

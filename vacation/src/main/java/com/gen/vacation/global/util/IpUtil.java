@@ -8,14 +8,14 @@ package com.gen.vacation.global.util;
  */
 public class IpUtil {
 
-    // String(IP) to long
+    private IpUtil() { throw new IllegalStateException("Utility class"); }
 
     public static Long ipToInt(String addr) {
         String[] addrArray = addr.split("\\.");
         long ip = 0;
         for (int i = 0; i < addrArray.length; i++) {
             int power = 3 - i;
-            ip += ((Integer.parseInt(addrArray[i]) % 256 * Math.pow(256, power)));
+            ip += (Integer.parseInt(addrArray[i]) % 256 * Math.pow(256, power));
         }
         return ip;
     }

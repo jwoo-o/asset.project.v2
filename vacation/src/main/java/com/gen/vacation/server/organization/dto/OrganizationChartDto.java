@@ -60,9 +60,9 @@ public class OrganizationChartDto {
         this.orgCode = organization.getOrgCode();
         this.orgPaCode = organization.getOrgPaCode();
         this.orgName = organization.getOrgName();
-        this.orgFullName = organization.getOrgFullName();;
-        this.orgFullCode = organization.getOrgFullCode();;
-        this.order = organization.getOrder();;
-        this.color = organization.getColor();;
+        this.orgFullName = organization.getOrgFullName();
+        this.orgFullCode = organization.getOrgFullCode();
+        this.order = organization.getOrder();
+        this.color = organization.getColor();
     }
 }

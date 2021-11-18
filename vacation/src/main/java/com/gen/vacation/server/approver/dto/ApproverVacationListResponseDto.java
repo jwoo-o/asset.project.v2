@@ -1,8 +1,7 @@
 package com.gen.vacation.server.approver.dto;
 
-import com.gen.vacation.global.Enum.ApprovalEnum;
-import com.gen.vacation.global.Enum.VacationKind;
-import lombok.AllArgsConstructor;
+import com.gen.vacation.global.enums.ApprovalEnum;
+import com.gen.vacation.global.enums.VacationKind;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,7 +18,7 @@ public class ApproverVacationListResponseDto {
     private String modifiedAt;
     private LocalDate endDay;
     private LocalDate startDay;
-    private String vacationKind;
+    private String vacationKindDesc;
     private String vacationType;
     private String vacationReason;
     private String vacationTel;
@@ -31,14 +30,14 @@ public class ApproverVacationListResponseDto {
     private int orderPosition;
     private boolean isAttach;
 
-    public ApproverVacationListResponseDto(Long vacationId, ApprovalEnum approveState, LocalDateTime createdAt, LocalDateTime modifiedAt, LocalDate endDay, LocalDate startDay, VacationKind vacationKind, String vacationType, String vacationReason, String vacationTel, String takeOver, String userId, String userName, String orgCode, String countDay, int orderPosition, Long isAttach) {
+    public ApproverVacationListResponseDto(Long vacationId, ApprovalEnum approveState, LocalDateTime createdAt, LocalDateTime modifiedAt, LocalDate endDay, LocalDate startDay, VacationKind vacationKind, String vacationType, String vacationReason, String vacationTel, String takeOver, String userId, String userName, String orgCode, String countDay, int orderPosition, boolean isAttach) {
         this.vacationId = vacationId;
         this.approveState = approveState.getDesc();
         this.createdAt = createdAt.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         this.modifiedAt = modifiedAt.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         this.endDay = endDay;
         this.startDay = startDay;
-        this.vacationKind = vacationKind.getDesc();
+        this.vacationKindDesc = vacationKind.getDesc();
         this.vacationType = vacationType;
         this.vacationReason = vacationReason;
         this.vacationTel = vacationTel;
@@ -48,9 +47,8 @@ public class ApproverVacationListResponseDto {
         this.orgCode = orgCode;
         this.countDay = countDay;
         this.orderPosition = orderPosition;
-        if(isAttach>0){
-            this.isAttach = true;
-        }
+        this.isAttach = isAttach;
+
     }
 
 }

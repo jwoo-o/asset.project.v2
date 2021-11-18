@@ -1,19 +1,13 @@
 package com.gen.vacation.global.domain.entity;
 
-import com.gen.vacation.global.Enum.ApprovalEnum;
-import com.gen.vacation.global.Enum.ApproverFlagEnum;
+import com.gen.vacation.global.enums.ApproverFlagEnum;
+import com.gen.vacation.global.enums.DivisionEnum;
 import com.gen.vacation.global.domain.common.BaseEntity;
-import com.gen.vacation.global.domain.common.BaseTimeEntity;
-import com.gen.vacation.global.domain.common.BooleanToYNConverter;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
-import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 
 @NoArgsConstructor
@@ -47,7 +41,8 @@ public class Approver extends BaseEntity {
     private String jobName;
 
     @Column(name = "division", length = 20, nullable = false)
-    private String division;
+    @Enumerated(EnumType.STRING)
+    private DivisionEnum division;
 
     @Column(name = "user_id")
     private String userId;
@@ -74,7 +69,7 @@ public class Approver extends BaseEntity {
     private User user;
 
     @Builder
-    public Approver(Long vacationId, Long approverDetailCode, Long approverGroupCode, String orgCode, String orgName, String rankCd, String rankNm, String jobName, String division, String userId, String userName, int order, ApproverFlagEnum approvalFlag,String email) {
+    public Approver(Long vacationId, Long approverDetailCode, Long approverGroupCode, String orgCode, String orgName, String rankCd, String rankNm, String jobName, DivisionEnum division, String userId, String userName, int order, ApproverFlagEnum approvalFlag,String email) {
         this.vacationId = vacationId;
         this.approverDetailCode = approverDetailCode;
         this.approverGroupCode = approverGroupCode;

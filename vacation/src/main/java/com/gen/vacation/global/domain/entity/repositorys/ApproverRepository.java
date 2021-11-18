@@ -1,5 +1,6 @@
 package com.gen.vacation.global.domain.entity.repositorys;
 
+import com.gen.vacation.global.enums.DivisionEnum;
 import com.gen.vacation.global.domain.entity.Approver;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,25 +13,14 @@ import java.util.Optional;
 public interface ApproverRepository extends JpaRepository<Approver, Long> {
 
 
-    Approver findAllByVacationIdAndDivisionAndOrder(Long vacationId, String approver, int order);
-
-
-    @Modifying
-    @Query(value = "UPDATE tb_approver a SET a.approvalFlag = 'Y' WHERE a.id = :id")
-    void updateApprovalFlagById(Long id);
-
-
-    int countByVacationIdAndDivision(Long vacationId, String approver);
-
-    int countByUserId(String userId);
-
+    List<Approver> findAllByVacationIdAndDivision(Long vacationId, DivisionEnum approver);
 
     @Modifying
-    @Query(value = "delete from tb_approver a  WHERE a.vacationId = :vacationId")
+    @Query(value = "DELETE FROM tb_approver a  WHERE a.vacationId = :vacationId")
     void deleteByVacationId(Long vacationId);
 
 
     Optional<Approver> findByVacationIdAndUserId(Long vacationId, String userId);
 
-    List<Approver> findAllByVacationIdAndDivisionOrderByOrderAsc(Long vacationId, String division);
+    List<Approver> findAllByVacationIdAndDivisionOrderByOrderAsc(Long vacationId, DivisionEnum division);
 }

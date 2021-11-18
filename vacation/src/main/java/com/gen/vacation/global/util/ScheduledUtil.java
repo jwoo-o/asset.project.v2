@@ -1,6 +1,8 @@
 package com.gen.vacation.global.util;
 
 import com.gen.vacation.global.common.dto.MailSenderDto;
+import com.gen.vacation.server.vacation.service.VacationBatchService;
+import com.gen.vacation.server.vacation.service.VacationDeadLineService;
 import com.gen.vacation.server.vacation.service.VacationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +25,7 @@ import java.util.*;
 public class ScheduledUtil {
 
 
-    private final VacationService vacationService;
+    private final VacationBatchService vacationBatchService;
 
     private final CustomMailSenderUtil senderUtil;
 
@@ -33,8 +35,8 @@ public class ScheduledUtil {
     public void vacationBatch() {
         log.info("vacation scheduled");
         try {
-            vacationService.updBatchNextYearsByUserId();
-            vacationService.updBatchLess1YearByUserId();
+            vacationBatchService.updBatchNextYearsByUserId();
+            vacationBatchService.updBatchLess1YearByUserId();
             deadlineBatch();
             findLessThanOneYearTenLeft();
         } catch (Exception e){
@@ -46,7 +48,7 @@ public class ScheduledUtil {
     private void deadlineBatch() {
         log.info("deadline scheduled");
         try {
-            List<MailSenderDto> list = vacationService.updBatchVacationDeadlineByUser();
+            List<MailSenderDto> list = vacationBatchService.updBatchVacationDeadlineByUser();
             List<String> userNames = new ArrayList<>();
             for(MailSenderDto dto : list) {
                 senderUtil.sendMail(dto);
@@ -58,6 +60,7 @@ public class ScheduledUtil {
                 data.put("currentDate" , LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
                 data.put("subject", "통지메일 전송 알림");
                 data.put("anniversary", false);
+
                 senderUtil.sendMail(MailSenderDto.builder()
                         .to("vacation@joeunins.com")
                         .from("vacation@joeunins.com")
@@ -73,13 +76,14 @@ public class ScheduledUtil {
     private void findLessThanOneYearTenLeft(){
         log.info("find Then Left LessThanOneYear batch");
         try {
-            List<String> list = vacationService.selBatchUserHireDateOfEntry();
+            List<String> list = vacationBatchService.selBatchUserHireDateOfEntry();
             for(String userName : list) {
                 Map<String, Object> data = new HashMap<>();
                 data.put("userNames", userName);
                 data.put("currentDate" , LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
-                data.put("subject",  userName+ "-1주년 근속일 알림");
+                data.put("subject",  userName+ "- 1주년 근속일 알림");
                 data.put("anniversary", true);
+
                 senderUtil.sendMail(MailSenderDto.builder()
                         .to("vacation@joeunins.com")
                         .from("vacation@joeunins.com")

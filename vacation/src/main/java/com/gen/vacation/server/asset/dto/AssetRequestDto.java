@@ -3,7 +3,6 @@ package com.gen.vacation.server.asset.dto;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.gen.vacation.global.domain.entity.Asset;
 import com.gen.vacation.global.util.JsonUtil;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

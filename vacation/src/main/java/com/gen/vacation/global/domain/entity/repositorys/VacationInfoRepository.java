@@ -2,7 +2,6 @@ package com.gen.vacation.global.domain.entity.repositorys;
 
 import com.gen.vacation.global.domain.entity.VacationInfo;
 import com.gen.vacation.global.domain.entity.id.VacationInfoId;
-import lombok.AllArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

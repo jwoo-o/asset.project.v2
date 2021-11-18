@@ -19,12 +19,14 @@ public class VacationDeadlineResponseDto {
     private String year;
     private String userId;
     private String writer;
+    private boolean confirm;
     private JSONArray deadlines;
 
     public VacationDeadlineResponseDto(VacationDeadline vacationDeadline) {
         this.year = vacationDeadline.getId().getYears();
-        this.userId = vacationDeadline.getId().getYears();;
+        this.userId = vacationDeadline.getId().getYears();
         this.writer = vacationDeadline.getId().getWriteType().getValue();
         this.deadlines = (JSONArray) JsonUtil.stringToJson(vacationDeadline.getDeadlines());
+        this.confirm = vacationDeadline.isConfirm();
     }
 }

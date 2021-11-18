@@ -28,8 +28,7 @@ public class BeforeOrgCodesAspect {
     private OrganizationRepositorySupport organizationRepositorySupport;
 
     @Pointcut("execution(* com.gen.vacation.server.*.service.*.*ByOrgCodes(..))")
-    public void onRequest() {
-    }
+    public void onRequest() {}
 
     @Around("com.gen.vacation.global.aop.BeforeOrgCodesAspect.onRequest()") // 4
     public Object doSearch(ProceedingJoinPoint pjp) throws Throwable {

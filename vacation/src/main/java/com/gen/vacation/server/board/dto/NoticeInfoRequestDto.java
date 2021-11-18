@@ -1,6 +1,6 @@
 package com.gen.vacation.server.board.dto;
 
-import com.gen.vacation.global.Enum.BoardEnum;
+import com.gen.vacation.global.enums.BoardEnum;
 import com.gen.vacation.global.domain.entity.Board;
 import lombok.Getter;
 import lombok.Setter;

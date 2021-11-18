@@ -7,6 +7,7 @@ import com.gen.vacation.global.common.dto.MailSenderDto;
 import com.gen.vacation.global.service.ResponseService;
 import com.gen.vacation.global.util.CustomMailSenderUtil;
 import com.gen.vacation.server.vacation.dto.*;
+import com.gen.vacation.server.vacation.service.VacationDeadLineService;
 import com.gen.vacation.server.vacation.service.VacationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +26,8 @@ public class VacationApiController {
     private final ResponseService responseService;
 
     private final VacationService vacationService;
+
+    private final VacationDeadLineService vacationDeadLineService;
 
     private final CustomMailSenderUtil mailSenderUtil;
 
@@ -118,30 +121,6 @@ public class VacationApiController {
         return responseService.getSingleResult(vacationService.selVacationDateCheck(userId, startDay, endDay, vacationId));
     }
 
-    @GetMapping("/vacation/deadline")
-    public SingleResult<Map<String,Object>> getVacationDeadline(VacationDeadlineRequestDto dto) throws Exception {
-
-        return responseService.getSingleResult(vacationService.selVacationDeadline(dto));
-    }
-    @PostMapping("/vacation/deadline/sender")
-    public CommonResult postVacationDeadlineBySender(@RequestBody VacationDeadlineRequestDto dto) throws Exception {
-
-        MailSenderDto senderDto = vacationService.insVacationDeadlineByUser(dto);
-        mailSenderUtil.sendMail(senderDto);
-
-        return responseService.getSuccessResult();
-    }
-
-    @PostMapping("/vacation/deadline")
-    public CommonResult postVacationDeadline(@RequestBody VacationDeadlineRequestDto dto) throws Exception {
-
-        MailSenderDto senderDto = vacationService.insVacationDeadline(dto);
-        mailSenderUtil.sendMail(senderDto);
-
-        return responseService.getSuccessResult();
-    }
-
-
 
     @PostMapping("/vacation/cancel")
     public CommonResult postVacationCancel(@RequestBody VacationCancelDto dto) throws Exception {
@@ -181,6 +160,39 @@ public class VacationApiController {
         return responseService.getSingleResult(vacationService.selVacationHistoryListByUserId(userId,dto));
     }
 
+
+
+    @GetMapping("/vacation/deadline")
+    public SingleResult<Map<String,Object>> getVacationDeadline(VacationDeadlineRequestDto dto) throws Exception {
+
+        return responseService.getSingleResult(vacationDeadLineService.selVacationDeadline(dto));
+    }
+    @PostMapping("/vacation/deadline/sender")
+    public CommonResult postVacationDeadlineBySender(@RequestBody VacationDeadlineRequestDto dto) throws Exception {
+
+        MailSenderDto senderDto = vacationDeadLineService.insVacationDeadlineByUser(dto);
+        mailSenderUtil.sendMail(senderDto);
+
+        return responseService.getSuccessResult();
+    }
+
+    @PostMapping("/vacation/deadline")
+    public CommonResult postVacationDeadline(@RequestBody VacationDeadlineRequestDto dto) throws Exception {
+
+        MailSenderDto senderDto = vacationDeadLineService.insVacationDeadline(dto);
+        mailSenderUtil.sendMail(senderDto);
+
+        return responseService.getSuccessResult();
+    }
+
+    @PatchMapping("/vacation/deadline")
+    public CommonResult patchVacationDeadline(@RequestBody VacationDeadlineRequestDto dto) throws Exception {
+
+        MailSenderDto senderDto = vacationDeadLineService.updVacationDeadlineByAdmin(dto);
+        mailSenderUtil.sendMail(senderDto);
+
+        return responseService.getSuccessResult();
+    }
 
 
 }

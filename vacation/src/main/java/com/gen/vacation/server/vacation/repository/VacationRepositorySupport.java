@@ -1,26 +1,21 @@
 package com.gen.vacation.server.vacation.repository;
 
-import com.gen.vacation.global.Enum.ApprovalEnum;
-import com.gen.vacation.global.common.dto.SearchRequestDto;
-import com.gen.vacation.global.domain.entity.QVacation;
-import com.gen.vacation.global.domain.entity.Vacation;
+import com.gen.vacation.global.enums.ApprovalEnum;
+
 import com.gen.vacation.server.vacation.dto.CalendarResponseDto;
-import com.gen.vacation.server.vacation.dto.VacationListRequestDto;
 import com.gen.vacation.server.vacation.dto.VacationListResponseDto;
 import com.gen.vacation.server.vacation.dto.VacationSearchDto;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.ExpressionUtils;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.JPAExpressions;
-import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -33,22 +28,16 @@ import static com.gen.vacation.global.domain.entity.QOrganization.organization;
 import static com.gen.vacation.global.domain.entity.QUser.user;
 import static com.gen.vacation.global.domain.entity.QVacationFile.vacationFile;
 
+@RequiredArgsConstructor
 @Repository
-public class VacationRepositorySupport extends QuerydslRepositorySupport {
+public class VacationRepositorySupport {
 
     private final JPAQueryFactory jpaQueryFactory;
-
-    public VacationRepositorySupport(JPAQueryFactory jpaQueryFactory) {
-        super(Vacation.class);
-        this.jpaQueryFactory = jpaQueryFactory;
-    }
 
     public Map<String, Object> findAllBySearch(VacationSearchDto dto) throws Exception {
 
 
         Map<String, Object> data = new HashMap<>();
-
-        int total = 0;
         List<VacationListResponseDto> list = new ArrayList<>();
 
         BooleanBuilder builder = new BooleanBuilder();
@@ -60,6 +49,8 @@ public class VacationRepositorySupport extends QuerydslRepositorySupport {
                     break;
                 case "name":
                     builder.and(vacation.user.userName.eq(dto.getSearchWord()));
+                    break;
+                default:
                     break;
             }
         }
@@ -75,7 +66,7 @@ public class VacationRepositorySupport extends QuerydslRepositorySupport {
                 .from(vacation).innerJoin(user).on(vacation.userId.eq(user.userId))
                 .where(builder).orderBy(vacation.createdAt.desc()).limit(dto.getTotal()).offset(dto.getOffset()).fetch();
 
-        total = ids.size();
+        int total = ids.size();
         total += dto.getOffset();
 
         if (!ids.isEmpty()) {
@@ -109,34 +100,6 @@ public class VacationRepositorySupport extends QuerydslRepositorySupport {
 
 
         return data;
-    }
-
-    public List<VacationListResponseDto> findByUserId(String userId) {
-        List<VacationListResponseDto> list = new ArrayList<>();
-
-        Map<String, Object> data = new HashMap<>();
-
-        list = jpaQueryFactory.select(Projections.constructor(VacationListResponseDto.class
-                , vacation.vacationId
-                , vacation.approveState
-                , vacation.createdAt
-                , vacation.modifiedAt
-                , vacation.endDay
-                , vacation.startDay
-                , vacation.vacationKind
-                , vacation.vacationType
-                , vacation.vacationReason
-                , vacation.vacationTel
-                , vacation.takeOver
-                , vacation.userId
-                , vacation.userName
-                , vacation.orgCode
-                , vacation.countDay
-                , vacation.orderPosition
-                , vacation.rejectReason
-        )).from(vacation).where(vacation.userId.eq(userId)).orderBy(vacation.modifiedAt.desc()).limit(1).fetch();
-
-        return list;
     }
 
     public List<CalendarResponseDto> findCalendar(VacationSearchDto dto) {

@@ -34,7 +34,7 @@ public class CommonCodeGroup extends BaseTimeEntity implements Persistable<Strin
 
     @OneToMany(mappedBy = "commonCodeGroup")
     @OrderBy("order asc")
-    private List<CommonCodeDetail> commonCodeDetails = new ArrayList<CommonCodeDetail>();
+    private List<CommonCodeDetail> commonCodeDetails = new ArrayList<>();
 
     @Builder
     public CommonCodeGroup(String groupCode, String groupName, String groupDesc, boolean useYn) {

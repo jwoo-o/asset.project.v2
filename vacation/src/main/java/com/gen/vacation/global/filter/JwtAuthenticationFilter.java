@@ -1,6 +1,7 @@
 package com.gen.vacation.global.filter;
 
-import com.gen.vacation.global.contant.ErrorContant;
+import com.gen.vacation.global.enums.LoginHistoryEnum;
+import com.gen.vacation.global.contant.ErrorConstant;
 import com.gen.vacation.global.common.ErrorResult;
 import com.gen.vacation.global.config.JwtTokenConfig;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -44,7 +45,7 @@ public class JwtAuthenticationFilter extends GenericFilterBean {
             //server
             if (Jwts.parser().isSigned(token) && jwtTokenConfig.validateToken(token)) {
 
-                    if (type.equals("admin")) {
+                    if (type.equals(LoginHistoryEnum.ADMIN.getValue())) {
 
                         Authentication auth = jwtTokenConfig.getAuthentication(token);
                         SecurityContextHolder.getContext().setAuthentication(auth);
@@ -62,8 +63,8 @@ public class JwtAuthenticationFilter extends GenericFilterBean {
         } catch (ExpiredJwtException e) {
 
             ErrorResult errorResult = new ErrorResult();
-            errorResult.setCode(ErrorContant.EXF_TOKEN);
-            errorResult.setMessage(ErrorContant.getMessage(errorResult.getCode()));
+            errorResult.setCode(ErrorConstant.EXF_TOKEN);
+            errorResult.setMessage(ErrorConstant.getMessage(errorResult.getCode()));
             errorResult.setError("Expired token");
             request.setAttribute("token", errorResult);
 

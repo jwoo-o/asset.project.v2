@@ -13,12 +13,11 @@ import lombok.RequiredArgsConstructor;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.domain.Sort;
+
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -47,7 +46,7 @@ public class AssetService {
 
 
     @Value("${file.upload.directory}")
-    private String upload_directory;
+    private String uploadDirectory;
 
     @Value("${file.uri.path}")
     private String resourcesUriPath;
@@ -81,7 +80,7 @@ public class AssetService {
 
     public AssetResponseDto selAssetById(String assetId) throws Exception {
 
-        Asset asset = assetRepository.findById(assetId).orElseThrow(() -> new IllegalArgumentException());
+        Asset asset = assetRepository.findById(assetId).orElseThrow(IllegalArgumentException::new);
 
         AssetResponseDto dto = new AssetResponseDto(asset);
         AssetFile assetFile = assetFileRepository.findByAssetId(assetId).orElse(null);
@@ -102,11 +101,11 @@ public class AssetService {
 
     public void insAssetImage(AssetUploadDto dto) throws Exception {
 
-        Asset asset = assetRepository.findById(dto.getAssetId()).orElseThrow(() -> new IllegalArgumentException());
+        Asset asset = assetRepository.findById(dto.getAssetId()).orElseThrow(IllegalArgumentException::new);
 
         String fileName = dto.getFiles().getOriginalFilename()+"";
         fileName = fileName.substring(fileName.lastIndexOf("\\") + 1);
-        String uploadName = fileUploadUtil.fileUpload(dto.getFiles(), upload_directory + "/asset");
+        String uploadName = fileUploadUtil.fileUpload(dto.getFiles(), uploadDirectory + "/asset");
         assetFileRepository.save(AssetFile.builder()
                 .key(uploadName)
                 .assetId(asset.getAssetId())
@@ -117,14 +116,14 @@ public class AssetService {
 
     public void delAssetImage(String assetId) throws Exception {
 
-        AssetFile assetFile = assetFileRepository.findByAssetId(assetId).orElseThrow(() -> new IllegalArgumentException());
-        fileUploadUtil.fileDelete(assetFile.getKey(),upload_directory + "/asset");
+        AssetFile assetFile = assetFileRepository.findByAssetId(assetId).orElseThrow(IllegalArgumentException::new);
+        fileUploadUtil.fileDelete(assetFile.getKey(),uploadDirectory + "/asset");
         assetFileRepository.delete(assetFile);
     }
 
     public void updAsset(AssetRequestDto dto) throws Exception {
 
-        Asset asset = assetRepository.findById(dto.getAssetId()).orElseThrow(() -> new IllegalArgumentException());
+        Asset asset = assetRepository.findById(dto.getAssetId()).orElseThrow(IllegalArgumentException::new);
 
         asset.update(dto);
     }
@@ -153,64 +152,91 @@ public class AssetService {
         return dto;
     }
 
+
+
     public Map<String,Object> selAssetTotal(AssetSearchRequestDto dto) throws Exception {
 
-        int created = 0;
-        int modified = 0;
-        int disposal = 0;
-        Map<String,Object> result = new HashMap<>();
-
-        List<AssetTotalDto> org =  new ArrayList<>();
-        List<AssetTotalDto> group = new ArrayList<>();
-        List<AssetTotalDto> os = new ArrayList<>();
-        List<AssetTotalDto> program = new ArrayList<>();
-
-        LocalDate now = LocalDate.now();
-        LocalDate before = now.minusDays(30);
-        result.put("now",now);
-        result.put("before",before);
 
         List<Organization> organizations = organizationRepository.findByOrgFullCodeLike("%" +dto.getOrgCode()+"%");
-        List<String> orgPaCodes = organizations.stream().filter(organization -> organization.getOrgPaCode().equals(dto.getOrgCode())).map(v -> v.getOrgCode()).collect(Collectors.toList());
-        if(orgPaCodes.isEmpty()) {
-            orgPaCodes.add(dto.getOrgCode());
+        String fullCode = organizations.stream().filter(organization -> organization.getOrgCode().equals(dto.getOrgCode())).map(Organization::getOrgFullCode).collect(Collectors.joining());
+        List<Asset> assets = assetRepositorySupport.findAll(fullCode);
+
+        /** 자산 세부 내역 */
+        Map<String,Object> result = getAssetDetail(assets);
+        /** 부서별 현황 */
+        result.put("org",getOrgList(assets,organizations,dto.getOrgCode()));
+        /** 종류별 현황 */
+        result.put("group",getGroupList(assets));
+
+        return result;
+
+    }
+
+
+
+
+    private List<AssetTotalDto> getOrgList(List<Asset> assets, List<Organization> organizations, String code) {
+
+        List<String> subOrgCodes = organizations.stream().filter(organization -> organization.getOrgPaCode().equals(code)).map(Organization::getOrgCode).collect(Collectors.toList());
+        if(subOrgCodes.isEmpty()) {
+            subOrgCodes.add(code);
         }
-        List<String> orgCodes = organizations.stream().map(v -> v.getOrgCode()).collect(Collectors.toList());
-        List<CommonCodeDetail> details = commonCodeDetailRepository.findByGroupCode("assetCategory");
 
-        List<Asset> assets = assetRepositorySupport.findAll(orgCodes);
+        List<AssetTotalDto> org = new ArrayList<>();
+        for (String orgCode : subOrgCodes) {
 
-        for(CommonCodeDetail detail : details) {
-            AssetTotalDto totalDto = new AssetTotalDto();
-            totalDto.setValue(assets.stream().filter(asset -> asset.getCategory().equals(detail.getId().getDetailCode()) && !asset.getStatus().equals("D")).count());
-            totalDto.setName(detail.getDetailDesc());
-
-            group.add(totalDto);
-        }
-
-
-        for (String orgCode : orgPaCodes) {
-
-            List<String> subOrgCode = organizations.stream().filter(organization -> organization.getOrgFullCode().contains(orgCode)).map(v -> v.getOrgCode()).collect(Collectors.toList());
+            List<String> subOrgCode = organizations.stream().filter(organization -> organization.getOrgFullCode().contains(orgCode)).map(Organization::getOrgCode).collect(Collectors.toList());
 
             AssetTotalDto totalDto = new AssetTotalDto();
             totalDto.setValue(assets.stream().filter(asset -> subOrgCode.toString().contains(asset.getOrgCode()) && !asset.getStatus().equals("D")).count());
-            totalDto.setName(organizations.stream().filter(organization -> organization.getOrgCode().equals(orgCode)).findFirst().get().getOrgName());
+            totalDto.setName(organizations.stream().filter(organization -> organization.getOrgCode().equals(orgCode)).findFirst().orElseThrow(IllegalArgumentException::new).getOrgName());
 
 
             org.add(totalDto);
         }
-        result.put("org",org);
-        result.put("group",group);
+
+        return org;
+    }
+    private List<AssetTotalDto> getGroupList(List<Asset> assets) {
+
+        List<CommonCodeDetail> details = commonCodeDetailRepository.findByGroupCode("assetCategory");
+
+        List<AssetTotalDto> group = new ArrayList<>();
+        for(CommonCodeDetail detail : details) {
+            AssetTotalDto totalDto = new AssetTotalDto();
+            totalDto.setValue(assets.stream()
+                    .filter(asset -> asset.getCategory().equals(Objects.requireNonNull(detail.getId()).getDetailCode()) && !asset.getStatus().equals("D")).count());
+            totalDto.setName(detail.getDetailDesc());
+
+            group.add(totalDto);
+        }
+        return group;
+    }
+    private Map<String,Object> getAssetDetail(List<Asset> assets) {
+
+        Map<String,Object> result = new HashMap<>();
+
+        int created = 0;
+        int modified = 0;
+        int disposal = 0;
+
+        LocalDate now = LocalDate.now();
+        LocalDate before = now.minusDays(30);
 
 
-        result.put("assetList",  assets.stream().filter(asset -> asset.getModifiedAt()
-                .isAfter(before.atTime(0,0,0))).map(AssetResponseDto::new).collect(Collectors.toList()));
-        result.put("total",((List)result.get("assetList")).size());
+        result.put("now",now);
+        result.put("before",before);
+
+
+        List<AssetResponseDto> filterAsset = assets.stream().filter(asset -> asset.getModifiedAt()
+                .isAfter(before.atTime(0,0,0))).map(AssetResponseDto::new).collect(Collectors.toList());
+        result.put("assetList",  filterAsset);
+        result.put("total",filterAsset.size());
+
+
 
         Map<String,Long> osTotalMap = new HashMap<>();
         Map<String,Long> programTotalMap = new HashMap<>();
-
         for(Asset asset : assets) {
 
             if(asset.getModifiedAt().isAfter(before.atTime(0,0,0))) {
@@ -226,15 +252,16 @@ public class AssetService {
             if(asset.getCategory().equals("PC")) {
                 Map<String, Object> assetInfo = (Map<String, Object>) JsonUtil.stringToJson(asset.getAssetInfo());
 
-                if(assetInfo.get("osInfo") != null) {
-                    Long count = (Optional.ofNullable(osTotalMap.get(assetInfo.get("osInfo"))).orElseGet(() -> 0L))+1;
-                    osTotalMap.put(assetInfo.get("osInfo")+"", count);
+                String osInfoName = (String) assetInfo.get("osInfo");
+                if(osInfoName != null) {
+                    Long count = (Optional.ofNullable(osTotalMap.get(osInfoName)).orElse(0L))+1;
+                    osTotalMap.put(osInfoName, count);
                 }
                 if(assetInfo.get("programs") != null) {
                     JSONArray programs = (JSONArray) assetInfo.get("programs");
                     for (Object object : programs) {
                         JSONObject programObject = (JSONObject) object;
-                        Long count = (Optional.ofNullable(programTotalMap.get(programObject.get("name")+"")).orElseGet(() -> 0L))+1;
+                        Long count = (Optional.ofNullable(programTotalMap.get(programObject.get("name")+"")).orElse(0L))+1;
                         programTotalMap.put(programObject.get("name")+"", count);
                     }
                 }
@@ -246,28 +273,13 @@ public class AssetService {
         result.put("disposal",disposal);
 
 
-        osTotalMap.keySet().forEach(key -> {
-            AssetTotalDto totalDto = new AssetTotalDto();
-            totalDto.setName(key);
-            totalDto.setValue((Long) osTotalMap.get(key));
-            os.add(totalDto);
-        });
-        programTotalMap.keySet().forEach(key -> {
-            AssetTotalDto totalDto = new AssetTotalDto();
-            totalDto.setName(key);
-            totalDto.setValue((Long) programTotalMap.get(key));
-            program.add(totalDto);
-        });
+        List<AssetTotalDto> os = osTotalMap.entrySet().stream().map(AssetTotalDto::new).collect(Collectors.toList());
+        List<AssetTotalDto> program = programTotalMap.entrySet().stream().map(AssetTotalDto::new).collect(Collectors.toList());
+
+
         result.put("os",os);
         result.put("program",program);
 
-
-
-
-
-
         return result;
-
-
     }
 }

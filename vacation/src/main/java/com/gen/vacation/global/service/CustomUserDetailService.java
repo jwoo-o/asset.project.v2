@@ -1,6 +1,6 @@
 package com.gen.vacation.global.service;
 
-import com.gen.vacation.global.Enum.TokenEnum;
+import com.gen.vacation.global.enums.TokenEnum;
 import com.gen.vacation.global.config.security.custom.CustomAdminDetail;
 import com.gen.vacation.global.config.security.custom.CustomUserDetail;
 import com.gen.vacation.global.domain.entity.repositorys.AdminRepository;
@@ -10,8 +10,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by jinwoo.
@@ -39,12 +37,10 @@ public class CustomUserDetailService implements UserDetailsService {
     public UserDetails loadAdminById(String id) {
 
 
-        int count = 0;
-        count = adminRepository.countByAdminIdAndUseYn(id, true);
+        int count = adminRepository.countByAdminIdAndUseYn(id, true);
         if (count <= 0) {
-            throw new UsernameNotFoundException("User not fount");
+            throw new UsernameNotFoundException("User not found");
         }
-
 
         return CustomAdminDetail.builder()
                 .adminId(id)
@@ -53,10 +49,9 @@ public class CustomUserDetailService implements UserDetailsService {
 
     public UserDetails loadUserById(String id) {
 
-        int count = 0;
-        count = userRepository.countByUserIdAndUseYn(id, true);
+        int count = userRepository.countByUserIdAndUseYn(id, true);
         if (count <= 0) {
-            throw new UsernameNotFoundException("User not fount");
+            throw new UsernameNotFoundException("User not found");
         }
 
         return CustomUserDetail.builder()

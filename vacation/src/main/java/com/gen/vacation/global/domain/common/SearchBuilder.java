@@ -14,6 +14,7 @@ import static com.gen.vacation.global.domain.entity.QOrganizationLevel.organizat
  */
 public class SearchBuilder {
 
+    private SearchBuilder() { throw new IllegalStateException("Utility class"); }
 
     public static BooleanBuilder orgSearch(int order, String orgCode) {
 

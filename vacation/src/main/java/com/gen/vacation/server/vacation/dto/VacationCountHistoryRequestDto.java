@@ -1,6 +1,6 @@
 package com.gen.vacation.server.vacation.dto;
 
-import com.gen.vacation.global.Enum.LoginHistoryEnum;
+import com.gen.vacation.global.enums.LoginHistoryEnum;
 import lombok.Getter;
 import lombok.Setter;
 

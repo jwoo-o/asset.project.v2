@@ -1,20 +1,16 @@
 package com.gen.vacation.global.domain.entity;
 
-import com.gen.vacation.global.Enum.ApprovalEnum;
-import com.gen.vacation.global.Enum.VacationKind;
+import com.gen.vacation.global.enums.ApprovalEnum;
+import com.gen.vacation.global.enums.VacationKind;
 import com.gen.vacation.global.domain.common.BaseTimeEntity;
 import com.gen.vacation.server.vacation.dto.VacationListRequestDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.hibernate.annotations.ColumnDefault;
-import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,7 +70,7 @@ public class Vacation extends BaseTimeEntity {
     @Column(name = "reject_reason")
     private String rejectReason;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "user_id", updatable = false, insertable = false)
     private User user;
 

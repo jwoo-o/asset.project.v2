@@ -1,7 +1,6 @@
 package com.gen.vacation.server.approver.web;
 
 import com.gen.vacation.global.common.SingleResult;
-import com.gen.vacation.global.common.dto.SearchRequestDto;
 import com.gen.vacation.global.service.ResponseService;
 import com.gen.vacation.server.approver.service.ApproverService;
 import com.gen.vacation.server.vacation.dto.VacationSearchDto;

@@ -1,17 +1,11 @@
 package com.gen.vacation.server.vacation.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.gen.vacation.global.Enum.ApprovalEnum;
-import com.gen.vacation.global.Enum.VacationKind;
-import com.gen.vacation.global.common.dto.SearchRequestDto;
-import com.gen.vacation.global.domain.entity.ApproverDetail;
+import com.gen.vacation.global.enums.ApprovalEnum;
+import com.gen.vacation.global.enums.VacationKind;
 import com.gen.vacation.global.domain.entity.Vacation;
 import lombok.*;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.Timestamp;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 
 @Getter

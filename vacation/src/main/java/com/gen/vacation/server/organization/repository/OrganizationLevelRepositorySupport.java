@@ -3,11 +3,9 @@ package com.gen.vacation.server.organization.repository;
 import com.gen.vacation.global.domain.entity.OrganizationLevel;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.List;
 
 import static com.gen.vacation.global.domain.entity.QOrganizationLevel.organizationLevel;
@@ -18,18 +16,11 @@ import static com.gen.vacation.global.domain.entity.QOrganizationLevel.organizat
  * Date: 2020-10-21
  * Time: 오후 2:48
  */
+@RequiredArgsConstructor
 @Repository
-public class OrganizationLevelRepositorySupport extends QuerydslRepositorySupport {
+public class OrganizationLevelRepositorySupport {
 
     private final JPAQueryFactory jpaQueryFactory;
-
-    @PersistenceContext
-    private EntityManager em;
-
-    public OrganizationLevelRepositorySupport(JPAQueryFactory jpaQueryFactory) {
-        super(OrganizationLevel.class);
-        this.jpaQueryFactory = jpaQueryFactory;
-    }
 
     public List<OrganizationLevel> findAllByOrgCode(String orgCode, int order) throws Exception {
         BooleanBuilder builder = new BooleanBuilder();

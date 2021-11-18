@@ -1,13 +1,12 @@
 package com.gen.vacation.server.vacation.repository;
 
-import com.gen.vacation.global.domain.entity.VacationCountHistory;
 
 import com.gen.vacation.server.vacation.dto.VacationCountHistoryRequestDto;
 import com.gen.vacation.server.vacation.dto.VacationSearchDto;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -19,22 +18,16 @@ import java.util.stream.Collectors;
 import static com.gen.vacation.global.domain.entity.QAdmin.admin;
 import static com.gen.vacation.global.domain.entity.QVacationCountHistory.vacationCountHistory;
 
+@RequiredArgsConstructor
 @Repository
-public class VacationCountHistoryRepositorySupport extends QuerydslRepositorySupport {
+public class VacationCountHistoryRepositorySupport {
 
     private final JPAQueryFactory jpaQueryFactory;
-
-    public VacationCountHistoryRepositorySupport(JPAQueryFactory jpaQueryFactory) {
-        super(VacationCountHistory.class);
-        this.jpaQueryFactory = jpaQueryFactory;
-    }
 
     public Map<String, Object> findAllBySearch(String userId,VacationSearchDto dto) throws Exception {
 
 
         Map<String, Object> data = new HashMap<>();
-
-        int total = 0;
         List<VacationCountHistoryRequestDto> list = new ArrayList<>();
 
         BooleanBuilder builder = new BooleanBuilder();
@@ -43,10 +36,13 @@ public class VacationCountHistoryRepositorySupport extends QuerydslRepositorySup
 
         List<Long> ids = jpaQueryFactory.select(vacationCountHistory.id)
                 .from(vacationCountHistory)
-                .where(builder).orderBy(vacationCountHistory.modifiedAt.desc()).limit(dto.getTotal()).offset(dto.getOffset()).fetch();
+                .where(builder)
+                .orderBy(vacationCountHistory.modifiedAt.desc())
+                .limit(dto.getTotal()).offset(dto.getOffset())
+                .fetch();
 
 
-        total = ids.size();
+        int total = ids.size();
         total += dto.getOffset();
 
         if (!ids.isEmpty()) {
@@ -58,8 +54,12 @@ public class VacationCountHistoryRepositorySupport extends QuerydslRepositorySup
                     , admin.name.as("adminName")
                     , vacationCountHistory.pcIp
                     , vacationCountHistory.modifiedAt
-            )).from(vacationCountHistory).leftJoin(admin).on(vacationCountHistory.adminId.eq(admin.adminId))
-                    .where(vacationCountHistory.id.in(ids.stream().limit(dto.getLimit()).collect(Collectors.toList()))).orderBy(vacationCountHistory.id.desc()).fetch();
+            ))
+                    .from(vacationCountHistory)
+                    .leftJoin(admin)
+                        .on(vacationCountHistory.adminId.eq(admin.adminId))
+                    .where(vacationCountHistory.id.in(ids.stream().limit(dto.getLimit()).collect(Collectors.toList())))
+                    .orderBy(vacationCountHistory.id.desc()).fetch();
 
         }
         data.put("vacationChangeList", list);

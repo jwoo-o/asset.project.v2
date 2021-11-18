@@ -1,9 +1,7 @@
 package com.gen.vacation.server.approver.service;
 
-import com.gen.vacation.global.common.dto.SearchRequestDto;
 import com.gen.vacation.global.domain.entity.Approver;
 import com.gen.vacation.global.domain.entity.repositorys.ApproverRepository;
-import com.gen.vacation.server.approver.dto.ApproverVacationListResponseDto;
 import com.gen.vacation.server.approver.repository.ApproverRepositorySupport;
 import com.gen.vacation.server.vacation.dto.VacationSearchDto;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +27,7 @@ public class ApproverService {
 
     public Boolean selApproverListAndOrderCheck(String userId, Long vacationId, int orderPosition) throws Exception {
 
-        Approver approver = approverRepository.findByVacationIdAndUserId(vacationId, userId).orElseThrow(() -> new IllegalArgumentException());
+        Approver approver = approverRepository.findByVacationIdAndUserId(vacationId, userId).orElseThrow(IllegalArgumentException::new);
 
         return orderPosition == approver.getOrder();
     }

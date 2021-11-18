@@ -36,7 +36,7 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Blue X ray Documentation API")
+                .title("Vacation Documentation API")
                 .build();
 
     }

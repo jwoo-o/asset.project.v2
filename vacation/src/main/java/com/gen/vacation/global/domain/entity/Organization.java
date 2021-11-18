@@ -14,7 +14,9 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Entity(name = "tb_organization")
-@Table(name = "tb_organization")
+@Table(name = "tb_organization",indexes = {
+        @Index(columnList = "org_full_code")
+})
 public class Organization extends BaseTimeEntity {
 
     /**

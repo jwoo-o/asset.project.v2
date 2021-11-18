@@ -69,7 +69,7 @@ public class BoardService {
 
     public NoticeInfoResponseDto updSearchNoticeById(Long id) {
 
-        Board board = boardRepository.findById(id).orElseThrow(() -> new IllegalArgumentException());
+        Board board = boardRepository.findById(id).orElseThrow(IllegalArgumentException::new);
         board.updateCount();
 
         List<Map<String, Object>> fileList = new ArrayList<>();
@@ -78,7 +78,7 @@ public class BoardService {
             for (BoardFile boardFile : board.getBoardFiles()) {
                 Map<String, Object> file = new HashMap<>();
                 file.put("name", boardFile.getFileName());
-                file.put("url", basicUrl + "/" + resourcesUriPath + "/notice/" + boardFile.getKey());
+                file.put("url", basicUrl + "/" + resourcesUriPath + "/notice/"  + boardFile.getKey());
                 fileList.add(file);
             }
         }
@@ -88,9 +88,9 @@ public class BoardService {
         return noticeInfoResponseDto;
     }
 
-    public NoticeInfoResponseDto selNoticeById(Long id) {
+    public NoticeInfoResponseDto selNoticeById(Long id) throws Exception {
 
-        Board board = boardRepository.findById(id).orElseThrow(() -> new IllegalArgumentException());
+        Board board = boardRepository.findById(id).orElseThrow(IllegalArgumentException::new);
         List<Map<String, Object>> fileList = new ArrayList<>();
         if (board.getBoardFiles() != null) {
 
@@ -109,7 +109,7 @@ public class BoardService {
 
     public void delNoticeFile(Long id) throws Exception {
 
-        BoardFile boardFile = boardFileRepository.findById(id).orElseThrow(() -> new IllegalArgumentException());
+        BoardFile boardFile = boardFileRepository.findById(id).orElseThrow(IllegalArgumentException::new);
         String key = boardFile.getKey();
         boardFileRepository.delete(boardFile);
         fileUploadUtil.fileDelete(key, uploadDirectory + "/notice");
@@ -118,7 +118,7 @@ public class BoardService {
 
     public void updNotice(Long id, @Valid NoticeInfoRequestDto dto) throws Exception {
 
-        Board board = boardRepository.findById(id).orElseThrow(() -> new IllegalArgumentException());
+        Board board = boardRepository.findById(id).orElseThrow(IllegalArgumentException::new);
 
         board.update(dto);
 
@@ -134,7 +134,7 @@ public class BoardService {
 
     public void delNotice(Long id) throws Exception {
 
-        Board board = boardRepository.findById(id).orElseThrow(() -> new IllegalArgumentException());
+        Board board = boardRepository.findById(id).orElseThrow(IllegalArgumentException::new);
         List<BoardFile> files = board.getBoardFiles();
 
         if (files != null) {
@@ -153,9 +153,9 @@ public class BoardService {
         for (MultipartFile file : files) {
             String fileName = file.getOriginalFilename();
             fileName = fileName.substring(fileName.lastIndexOf("\\") + 1);
-            String upload_name = fileUploadUtil.fileUpload(file, uploadDirectory + "/notice");
+            String uploadName = fileUploadUtil.fileUpload(file, uploadDirectory + "/notice");
             BoardFile boardFile = boardFileRepository.save(BoardFile.builder()
-                    .key(upload_name)
+                    .key(uploadName)
                     .fileName(fileName)
                     .fileSize(file.getSize()).build());
             ids.add(boardFile.getId());

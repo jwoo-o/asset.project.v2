@@ -1,10 +1,9 @@
 package com.gen.vacation.global.service;
 
 import com.gen.vacation.global.common.CommonResult;
-import com.gen.vacation.global.common.ErrorResult;
 import com.gen.vacation.global.common.ListResult;
 import com.gen.vacation.global.common.SingleResult;
-import com.gen.vacation.global.contant.ErrorContant;
+import com.gen.vacation.global.contant.ErrorConstant;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,10 +22,10 @@ public class ResponseService {
      * api 요청 결과에 대한 code, message를 정의합니다.
      */
     public enum CommonResponse {
-        SUCCESS(ErrorContant.SUCCESS, "SUCCESS"),
-        FAIL(ErrorContant.FAIL, "FAIL"),
-        PUT(ErrorContant.SUCCESS, "PATCHED"),
-        DELETE(ErrorContant.SUCCESS, "DELETED");
+        SUCCESS(ErrorConstant.SUCCESS, "SUCCESS"),
+        FAIL(ErrorConstant.FAIL, "FAIL"),
+        PUT(ErrorConstant.SUCCESS, "PATCHED"),
+        DELETE(ErrorConstant.SUCCESS, "DELETED");
 
         String code;
         String result;
@@ -109,17 +108,6 @@ public class ResponseService {
         result.setSuccess(false);
         result.setCode(CommonResponse.FAIL.getCode());
         result.setResult(CommonResponse.FAIL.getResult());
-        return result;
-    }
-
-    /**
-     * 실패 결과만 처리하는 메소드
-     */
-    public ErrorResult getFailResult(ErrorResult errorResult) {
-        ErrorResult result = new ErrorResult();
-        //result.setSuccess(false);
-        //result.setCode(CommonResponse.FAIL.getCode());
-        //result.setResult(CommonResponse.FAIL.getResult());
         return result;
     }
 

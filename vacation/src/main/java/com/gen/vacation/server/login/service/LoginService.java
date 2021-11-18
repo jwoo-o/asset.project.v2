@@ -1,9 +1,9 @@
 package com.gen.vacation.server.login.service;
 
-import com.gen.vacation.global.Enum.LoginHistoryEnum;
-import com.gen.vacation.global.Enum.TokenEnum;
+import com.gen.vacation.global.enums.LoginHistoryEnum;
+import com.gen.vacation.global.enums.TokenEnum;
 import com.gen.vacation.global.config.JwtTokenConfig;
-import com.gen.vacation.global.contant.ErrorContant;
+import com.gen.vacation.global.contant.ErrorConstant;
 import com.gen.vacation.global.domain.entity.*;
 import com.gen.vacation.global.domain.entity.repositorys.*;
 import com.gen.vacation.global.util.*;
@@ -64,8 +64,8 @@ public class LoginService {
                 .loginYn(false)
                 .loginType(LoginHistoryEnum.ADMIN)
                 .pcIp(accessIp)
-                .errMsg(ErrorContant.FAIL).build());
-        adminLoginResponseDto.setErrCode(ErrorContant.FAIL);
+                .errMsg(ErrorConstant.FAIL).build());
+        adminLoginResponseDto.setErrCode(ErrorConstant.FAIL);
         String encPwd = "";
 
             if (admin.isSalt()) {
@@ -86,11 +86,11 @@ public class LoginService {
                     adminLoginResponseDto.setToken(token);
 
                     admin.login();
-                    history.success(true, ErrorContant.SUCCESS);
-                    adminLoginResponseDto.setErrCode(ErrorContant.SUCCESS);
+                    history.success(true, ErrorConstant.SUCCESS);
+                    adminLoginResponseDto.setErrCode(ErrorConstant.SUCCESS);
                 } else {
-                    history.fail(ErrorContant.WRNG_LOGIN);
-                    adminLoginResponseDto.setErrCode(ErrorContant.WRNG_LOGIN);
+                    history.fail(ErrorConstant.WRNG_LOGIN);
+                    adminLoginResponseDto.setErrCode(ErrorConstant.WRNG_LOGIN);
                 }
 
             } else {
@@ -102,8 +102,8 @@ public class LoginService {
                     String token = jwtTokenConfig.createToken(data);
                     adminLoginResponseDto.setToken(token);
                 } else {
-                    history.fail(ErrorContant.WRNG_LOGIN);
-                    adminLoginResponseDto.setErrCode(ErrorContant.WRNG_LOGIN);
+                    history.fail(ErrorConstant.WRNG_LOGIN);
+                    adminLoginResponseDto.setErrCode(ErrorConstant.WRNG_LOGIN);
                 }
             }
         return adminLoginResponseDto;
@@ -125,8 +125,8 @@ public class LoginService {
                 .loginYn(false)
                 .loginType(LoginHistoryEnum.USER)
                 .pcIp(accessIp)
-                .errMsg(ErrorContant.FAIL).build());
-        userLoginResponseDto.setErrCode(ErrorContant.FAIL);
+                .errMsg(ErrorConstant.FAIL).build());
+        userLoginResponseDto.setErrCode(ErrorConstant.FAIL);
         String encPwd = "";
 
         if (user.isSalt()) {
@@ -146,7 +146,7 @@ public class LoginService {
                 data.put("isAdmin",user.isAdmin());
                 data.put("isAssetAdmin",user.isAssetAdmin());
                 if(user.isAdmin()){
-                    Organization organization = organizationRepository.findById("00000000").orElseThrow(() -> new IllegalArgumentException());
+                    Organization organization = organizationRepository.findById("00000000").orElseThrow(IllegalArgumentException::new);
                     data.put("orgName", organization.getOrgName());
                     data.put("orgCode", organization.getOrgCode());
                     data.put("mgrOrgCode", organization.getOrgCode());
@@ -163,11 +163,11 @@ public class LoginService {
                 userLoginResponseDto.setToken(token);
 
                 user.login();
-                history.success(true, ErrorContant.SUCCESS);
-                userLoginResponseDto.setErrCode(ErrorContant.SUCCESS);
+                history.success(true, ErrorConstant.SUCCESS);
+                userLoginResponseDto.setErrCode(ErrorConstant.SUCCESS);
             } else {
-                history.fail(ErrorContant.WRNG_LOGIN);
-                userLoginResponseDto.setErrCode(ErrorContant.WRNG_LOGIN);
+                history.fail(ErrorConstant.WRNG_LOGIN);
+                userLoginResponseDto.setErrCode(ErrorConstant.WRNG_LOGIN);
             }
 
         } else {
@@ -179,8 +179,8 @@ public class LoginService {
                 String token = jwtTokenConfig.createToken(data);
                 userLoginResponseDto.setToken(token);
             } else {
-                history.fail(ErrorContant.WRNG_LOGIN);
-                userLoginResponseDto.setErrCode(ErrorContant.WRNG_LOGIN);
+                history.fail(ErrorConstant.WRNG_LOGIN);
+                userLoginResponseDto.setErrCode(ErrorConstant.WRNG_LOGIN);
 
             }
         }

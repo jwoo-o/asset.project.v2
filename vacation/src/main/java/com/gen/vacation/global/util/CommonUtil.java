@@ -21,6 +21,8 @@ import java.util.List;
 @Slf4j
 public class CommonUtil {
 
+    private CommonUtil() { throw new IllegalStateException("Utility class"); }
+
     public static boolean isNumeric(String s) {
         try {
             Double.parseDouble(s);
@@ -37,8 +39,6 @@ public class CommonUtil {
         } else {
             try {
                 str = obj.toString();
-            } catch (NullPointerException ne) {
-                return defaultVal;
             } catch (Exception e) {
                 return defaultVal;
             }
@@ -49,22 +49,23 @@ public class CommonUtil {
     public static String getClientIpAddr(HttpServletRequest request) {
         String ip = request.getHeader("X-Forwarded-For");
 
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+        String unknown = "unknown";
+        if (ip == null || ip.length() == 0 || unknown.equalsIgnoreCase(ip)) {
             ip = request.getHeader("Proxy-Client-IP");
         }
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+        if (ip == null || ip.length() == 0 || unknown.equalsIgnoreCase(ip)) {
             ip = request.getHeader("WL-Proxy-Client-IP");
         }
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+        if (ip == null || ip.length() == 0 || unknown.equalsIgnoreCase(ip)) {
             ip = request.getHeader("HTTP_CLIENT_IP");
         }
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+        if (ip == null || ip.length() == 0 || unknown.equalsIgnoreCase(ip)) {
             ip = request.getHeader("HTTP_X_FORWARDED_FOR");
         }
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+        if (ip == null || ip.length() == 0 || unknown.equalsIgnoreCase(ip)) {
             ip = request.getHeader("X-Real-IP");
         }
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+        if (ip == null || ip.length() == 0 || unknown.equalsIgnoreCase(ip)) {
             ip = request.getRemoteAddr();
         }
 
@@ -80,6 +81,14 @@ public class CommonUtil {
     public static LocalDate stringToLocalDate(String date) {
 
         return  LocalDate.parse(date, DateTimeFormatter.ISO_DATE);
+    }
+    public static String korLocalDateTime(LocalDateTime date) {
+
+        return date.format(DateTimeFormatter.ofPattern("yyyy년  MM월  dd일"));
+    }
+    public static String korLocalDate(LocalDate date) {
+
+        return date.format(DateTimeFormatter.ofPattern("yyyy년  MM월  dd일"));
     }
 
     public static List<String> findBetweenCurAndHire(int hire) {

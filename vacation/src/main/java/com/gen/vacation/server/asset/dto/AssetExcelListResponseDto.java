@@ -1,10 +1,8 @@
 package com.gen.vacation.server.asset.dto;
 
-import com.gen.vacation.global.util.CommonUtil;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.websocket.server.ServerEndpoint;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

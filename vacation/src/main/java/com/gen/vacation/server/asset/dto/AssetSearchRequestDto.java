@@ -5,8 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.validation.constraints.NotNull;
-import java.sql.Timestamp;
 
 /**
  * Created by dhwlsdn741@gmail.com

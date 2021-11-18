@@ -2,13 +2,10 @@ package com.gen.vacation.global.domain.entity.repositorys;
 
 
 import com.gen.vacation.global.domain.entity.Admin;
-import com.gen.vacation.global.domain.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,7 +21,7 @@ public interface AdminRepository extends JpaRepository<Admin, String> {
 
     int countByAdminIdAndUseYn(String adminId, boolean useYn);
 
-    @Query("select a from tb_admin a where a.useYn = :useYn and a.adminId <> :adminId")
-    List<Admin> findByAdminIdNotAndUseYn(@Param("adminId") String adminId, @Param("useYn") boolean useYn);
+    @Query("select a.email from tb_admin a where a.useYn = :useYn and a.adminId <> :adminId")
+    List<String> findByAdminIdNotAndUseYn(@Param("adminId") String adminId, @Param("useYn") boolean useYn);
 }
 

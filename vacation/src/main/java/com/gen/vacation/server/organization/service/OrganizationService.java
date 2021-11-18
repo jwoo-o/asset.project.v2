@@ -51,7 +51,7 @@ public class OrganizationService {
     public List<Map<String, Object>> selOrganizationChartByLevel(String orgCode, String type) throws Exception {
         List<Map<String, Object>> result;
 
-        Organization organization = organizationRepository.findById(orgCode).orElseThrow(() -> new IllegalArgumentException());
+        Organization organization = organizationRepository.findById(orgCode).orElseThrow(IllegalArgumentException::new);
 
         List<OrganizationChartDto> data = organizationRepositorySupport.findAllByOrgCode(organization.getOrgCode());
 
@@ -89,7 +89,7 @@ public class OrganizationService {
     /** 부서삭제 시 */
     public void delOrganizationChart(String orgCode) throws Exception {
 
-        Organization organization = organizationRepository.findById(orgCode).orElseThrow(() -> new IllegalArgumentException());
+        Organization organization = organizationRepository.findById(orgCode).orElseThrow(IllegalArgumentException::new);
 
         List<String> orgCodes = organizationRepositorySupport.findOrgCodeAllByOrgCode(orgCode, organization.getOrder());
 
@@ -168,7 +168,7 @@ public class OrganizationService {
 
     public void updOrganizationChart(OrganizationChartUpdateRequestDto dto) throws Exception {
 
-        Organization organization = organizationRepository.findById(dto.getOrgCode()).orElseThrow(() -> new IllegalArgumentException());
+        Organization organization = organizationRepository.findById(dto.getOrgCode()).orElseThrow(IllegalArgumentException::new);
         if(!dto.getOrgPaCode().equals(organization.getOrgPaCode())) {
             List<Organization> organizations =  organizationRepository.findByOrgFullCodeLikeOrderByOrderAsc(organization.getOrgFullCode()+"%");
             List<OrganizationLevel> levels = organizationLevelRepositorySupport.findAllByOrgCode(organization.getOrgCode(),organization.getOrder());
@@ -181,7 +181,7 @@ public class OrganizationService {
                 level.update(dto);
                 org.update(orgFullName,orgFullCode,dto);
             }
-            OrganizationLevel organizationLevel = organizationLevelRepository.findById(dto.getOrgCode()).orElseThrow(() -> new IllegalArgumentException());
+            OrganizationLevel organizationLevel = organizationLevelRepository.findById(dto.getOrgCode()).orElseThrow(IllegalArgumentException::new);
             organizationLevel.update(dto);
         }
         if(!dto.getOrgName().equals(organization.getOrgName())) {

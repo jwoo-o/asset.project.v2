@@ -1,7 +1,7 @@
 package com.gen.vacation.global.config.security;
 
 import com.gen.vacation.global.common.ErrorResult;
-import com.gen.vacation.global.contant.ErrorContant;
+import com.gen.vacation.global.contant.ErrorConstant;
 import com.gen.vacation.global.util.JsonUtil;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -36,8 +36,8 @@ public class AuthEntryPoint implements AuthenticationEntryPoint {
             error = (ErrorResult) request.getAttribute("token");
         } else {
             error.setError("Unauthorized");
-            error.setCode(ErrorContant.UNAUTHORIZED);
-            error.setMessage(ErrorContant.getMessage(error.getCode()));
+            error.setCode(ErrorConstant.UNAUTHORIZED);
+            error.setMessage(ErrorConstant.getMessage(error.getCode()));
 
         }
         PrintWriter out = response.getWriter();

@@ -1,6 +1,6 @@
 package com.gen.vacation.global.domain.entity;
 
-import com.gen.vacation.global.Enum.LoginHistoryEnum;
+import com.gen.vacation.global.enums.LoginHistoryEnum;
 import com.gen.vacation.global.domain.common.BaseEntity;
 import lombok.*;
 

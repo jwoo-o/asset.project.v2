@@ -1,5 +1,6 @@
 package com.gen.vacation.global.domain.entity;
 
+import com.gen.vacation.global.enums.DivisionEnum;
 import com.gen.vacation.global.domain.common.BaseTimeEntity;
 import com.gen.vacation.server.approverGroup.dto.ApproverDetailRequestDto;
 import lombok.Builder;
@@ -42,7 +43,8 @@ public class ApproverDetail extends BaseTimeEntity{
     private String jobName;
 
     @Column(name = "division", length = 20, nullable = false)
-    private String division;
+    @Enumerated(EnumType.STRING)
+    private DivisionEnum division;
 
     @Column(name = "user_id")
     private String userId;
@@ -56,15 +58,13 @@ public class ApproverDetail extends BaseTimeEntity{
     @Column(name = "order")
     private int order;
 
-
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "approver_group_code", updatable = false, insertable = false)
     private ApproverGroup approverGroup;
 
 
     @Builder
-    public ApproverDetail(Long approverDetailCode, Long approverGroupCode, String orgCode, String orgName, String rankCd, String rankNm, String jobCode, String jobName, String division, String userId, String userName, int order,String email) {
+    public ApproverDetail(Long approverDetailCode, Long approverGroupCode, String orgCode, String orgName, String rankCd, String rankNm, String jobCode, String jobName, DivisionEnum division, String userId, String userName, int order,String email) {
         this.approverDetailCode = approverDetailCode;
         this.approverGroupCode = approverGroupCode;
         this.orgCode = orgCode;
@@ -87,10 +87,10 @@ public class ApproverDetail extends BaseTimeEntity{
         this.orgName = requestDto.getOrgName();
         this.rankCd = requestDto.getRankCd();
         this.rankNm = requestDto.getRankNm();
-        this.division = requestDto.getDivision();
+        this.division = DivisionEnum.valueOf(requestDto.getDivision());
         this.userId = requestDto.getUserId();
         this.userName = requestDto.getUserName();
-        this.jobCode = requestDto.getJobCode();;
+        this.jobCode = requestDto.getJobCode();
         this.jobName = requestDto.getJobName();
         this.order = requestDto.getOrder();
         this.email = requestDto.getEmail();

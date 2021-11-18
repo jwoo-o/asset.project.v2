@@ -2,10 +2,8 @@ package com.gen.vacation.server.user.service;
 
 import com.gen.vacation.global.common.dto.SearchRequestDto;
 
-import com.gen.vacation.global.domain.entity.Admin;
-import com.gen.vacation.global.domain.entity.User;
+import com.gen.vacation.global.domain.entity.*;
 
-import com.gen.vacation.global.domain.entity.VacationInfo;
 import com.gen.vacation.global.domain.entity.id.VacationInfoId;
 import com.gen.vacation.global.domain.entity.repositorys.*;
 import com.gen.vacation.global.util.AESUtil;
@@ -18,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
+
 import javax.validation.Valid;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -43,6 +42,7 @@ public class UserService {
     private final AdminRepository adminRepository;
     private final OrganizationRepository organizationRepository;
     private final ApproverDetailRepository approverDetailRepository;
+    private final AssetRepository assetRepository;
 
     private final FileUploadUtil fileUploadUtil;
 
@@ -121,7 +121,7 @@ public class UserService {
 
     public void updUser(@Valid UserRequestDto dto) throws Exception {
 
-        User user = userRepository.findByUserIdAndUseYn(dto.getUserId(), true).orElseThrow(() -> new IllegalArgumentException());
+        User user = userRepository.findByUserIdAndUseYn(dto.getUserId(), true).orElseThrow(IllegalArgumentException::new);
         user.update(dto);
 
         Admin admin = adminRepository.findById(dto.getUserId()).orElse(null);
@@ -146,7 +146,7 @@ public class UserService {
 
     public void updUserPass(@Valid UserPasswordRequestDto dto) throws Exception {
 
-        User user = userRepository.findByUserIdAndUseYn(dto.getUserId(), true).orElseThrow(() -> new IllegalArgumentException());
+        User user = userRepository.findByUserIdAndUseYn(dto.getUserId(), true).orElseThrow(IllegalArgumentException::new);
         /** 변경일 때*/
         if (!dto.getPassword().isEmpty()) {
             dto.setPassword(AESUtil.decrypt(dto.getPassword(), encryptKey));
@@ -170,7 +170,7 @@ public class UserService {
 
     public  Map<String,Object> selUserInfo(String userId) throws Exception {
 
-        User user = userRepository.findByUserIdAndUseYn(userId, true).orElseThrow(() -> new IllegalArgumentException());
+        User user = userRepository.findByUserIdAndUseYn(userId, true).orElseThrow(IllegalArgumentException::new);
 
         UserInfoResponseDto userInfoResponseDto = new UserInfoResponseDto(user);
         Map<String,Object> map = new HashMap<>();
@@ -190,29 +190,32 @@ public class UserService {
 
 
     public void delUser(String userId, String leaveDate) throws Exception {
-        User user = userRepository.findById(userId).orElseThrow(() -> new IllegalArgumentException());
+        User user = userRepository.findById(userId).orElseThrow(IllegalArgumentException::new);
         user.delete(LocalDate.parse(leaveDate));
+
+        /** 사용중인 it 장비 사용자 null*/
+        assetRepository.updateUserIdByUserId(userId);
 
         approverDetailRepository.deleteByUserId(user.getUserId());
 
     }
 
     public void insUserProfileImage(UserUploadDto dto) throws Exception {
-        User user = userRepository.findById(dto.getUserId()).orElseThrow(() -> new IllegalArgumentException());
+        User user = userRepository.findById(dto.getUserId()).orElseThrow(IllegalArgumentException::new);
 
         String profileImage = fileUploadUtil.fileUpload(dto.getFiles(),uploadDirectory+"/profile");
         user.imageUpload(profileImage);
     }
 
     public void delUserProfileImage(String userId) throws Exception {
-        User user = userRepository.findById(userId).orElseThrow(() -> new IllegalArgumentException());
+        User user = userRepository.findById(userId).orElseThrow(IllegalArgumentException::new);
         fileUploadUtil.fileDelete(user.getProfileImage(), uploadDirectory + "/profile");
         user.imageUpload(null);
     }
 
     public List<UserInfoResponseDto> selUserListAll() throws Exception {
 
-        return userRepository.findByUseYn(true)
+        return userRepository.findAll()
                 .stream()
                 .map(UserInfoResponseDto::new)
                 .collect(Collectors.toList());

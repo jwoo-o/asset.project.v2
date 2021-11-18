@@ -92,13 +92,13 @@ public class UserApiController {
     }
 
     @PostMapping("/user/image")
-    public CommonResult insUserProfileImage(UserUploadDto dto) throws Exception {
+    public CommonResult postUserProfileImage(UserUploadDto dto) throws Exception {
 
         userService.insUserProfileImage(dto);
         return responseService.getSuccessResult();
     }
     @DeleteMapping("/user/image/{userId}")
-    public CommonResult insUserProfileImage(@PathVariable String userId) throws Exception {
+    public CommonResult deleteUserProfileImage(@PathVariable String userId) throws Exception {
 
         userService.delUserProfileImage(userId);
         return responseService.getSuccessResult();

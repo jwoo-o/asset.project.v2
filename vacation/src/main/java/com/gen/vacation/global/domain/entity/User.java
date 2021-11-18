@@ -18,7 +18,9 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Entity(name = "tb_user")
-@Table(name = "tb_user")
+@Table(name = "tb_user",indexes = {
+        @Index(name = "i_tb_user_use_yn_org_code_created_at",columnList = "use_yn,org_code,created_at")
+})
 public class User extends BaseTimeEntity implements Persistable<String> {
 
     @Id
@@ -71,10 +73,24 @@ public class User extends BaseTimeEntity implements Persistable<String> {
     private LocalDate hireDate;
 
     @Column
+    private LocalDate birthDate;
+
+    @Column(name = "responsibilities")
+    String responsibilities;
+
+
+    @Column
     private LocalDate leaveDate;
 
     @Column(name = "profile_image")
     private String profileImage;
+
+    @Column
+    private String address;
+
+    @Column
+    private String address1;
+
 
     @Column(name = "asset_admin",length = 2)
     @Convert(converter = BooleanToYNConverter.class)
@@ -107,7 +123,7 @@ public class User extends BaseTimeEntity implements Persistable<String> {
 
 
     @Builder
-    public User(String userId, String password, String name, String orgCode, String rankCd, String rankNm, String email, String tel,boolean salt,LocalDate hireDate,String jobCd, String jobNm,Long seatId,boolean admin,String ex,boolean assetAdmin,String mgrOrgCode) {
+    public User(String userId, String password, String name, String orgCode, String rankCd, String rankNm, String email, String tel,boolean salt,LocalDate hireDate,LocalDate birthDate, String responsibilities, String jobCd, String jobNm,Long seatId,boolean admin,String ex,boolean assetAdmin,String mgrOrgCode,String address, String address1) {
         this.userId = userId;
         this.password = password;
         this.userName = name;
@@ -121,11 +137,15 @@ public class User extends BaseTimeEntity implements Persistable<String> {
         this.salt = salt;
         this.useYn = true;
         this.hireDate = hireDate;
+        this.birthDate = birthDate;
+        this.responsibilities = responsibilities;
         this.seatId = seatId;
         this.admin = admin;
         this.ex = ex;
         this.assetAdmin = assetAdmin;
         this.mgrOrgCode = mgrOrgCode;
+        this.address = address;
+        this.address1 = address1;
     }
 
 
@@ -158,6 +178,10 @@ public class User extends BaseTimeEntity implements Persistable<String> {
         this.assetAdmin = dto.isAssetAdmin();
         this.mgrOrgCode = dto.getMgrOrgCode();
         this.hireDate = dto.getHireDate().toLocalDateTime().toLocalDate();
+        this.birthDate = dto.getBirthDate().toLocalDateTime().toLocalDate();
+        this.responsibilities = dto.getResponsibilities();
+        this.address = dto.getAddress();
+        this.address1 = dto.getAddress1();
     }
 
     public void imageUpload(String profileImage) {

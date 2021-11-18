@@ -36,29 +36,28 @@ public class RequestLoggingAspect {
 
 
     @Pointcut("execution(* com.gen.vacation.server.*.web.*.*(..))")
-    public void onRequest() {
-    }
+    public void onRequest() {}
 
     @Around("com.gen.vacation.global.aop.RequestLoggingAspect.onRequest()") // 4
     public Object doLogging(ProceedingJoinPoint pjp) throws Throwable {
         HttpServletRequest request = // 5
                 ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
-        Object paramMap = null;
-        String params = "";
+        Map<String, String[]> paramMap = null;
+        StringBuilder params = new StringBuilder();
         if (request.getMethod().equals("POST") || request.getMethod().equals("PUT")) {
-            params += " [";
+            params.append(" [");
             Object[] objects = pjp.getArgs();
             for (Object object : objects) {
 
                 if (!object.getClass().toString().contains("java")) {
-                    params += object.toString();
+                    params.append(object.toString());
                 }
             }
-            params += "]";
+            params.append("]");
         } else {
             paramMap = request.getParameterMap();
-            if (!((Map) paramMap).isEmpty()) {
-                params = " [" + paramMapToString((Map<String, String[]>) paramMap) + "]";
+            if (!paramMap.isEmpty()) {
+                params = new StringBuilder(" [" + paramMapToString(paramMap) + "]");
             }
         }
 
@@ -68,7 +67,7 @@ public class RequestLoggingAspect {
         } finally {
             long end = System.currentTimeMillis();
             log.info("Request: {} {}{} < {} ({}ms)", request.getMethod(), request.getRequestURI(),
-                    params, CommonUtil.getClientIpAddr(request), end - start);
+                    params.toString(), CommonUtil.getClientIpAddr(request), end - start);
         }
     }
 }

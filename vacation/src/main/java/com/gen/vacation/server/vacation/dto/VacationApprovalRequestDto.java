@@ -1,16 +1,11 @@
 package com.gen.vacation.server.vacation.dto;
 
-import com.gen.vacation.global.Enum.ApprovalEnum;
-import com.gen.vacation.global.Enum.VacationKind;
-import com.gen.vacation.global.domain.entity.Vacation;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 @Getter
 @Setter

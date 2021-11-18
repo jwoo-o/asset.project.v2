@@ -5,7 +5,6 @@ import com.gen.vacation.global.domain.entity.id.VacationInfoId;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -18,8 +17,9 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Entity(name = "tb_vacation_info")
-@Table(name = "tb_vacation_info")
-@ToString
+@Table(name = "tb_vacation_info",indexes = {
+        @Index(columnList = "years")
+})
 public class VacationInfo extends BaseTimeEntity {
 
 

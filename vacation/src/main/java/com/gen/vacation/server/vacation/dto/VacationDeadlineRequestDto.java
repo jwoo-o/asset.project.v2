@@ -1,14 +1,13 @@
 package com.gen.vacation.server.vacation.dto;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.gen.vacation.global.Enum.LoginHistoryEnum;
+import com.gen.vacation.global.enums.LoginHistoryEnum;
 import com.gen.vacation.global.domain.entity.VacationDeadline;
 import com.gen.vacation.global.domain.entity.id.VacationDeadlineId;
 import com.gen.vacation.global.util.JsonUtil;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.json.simple.JSONArray;
 
 import java.util.List;
 import java.util.Map;

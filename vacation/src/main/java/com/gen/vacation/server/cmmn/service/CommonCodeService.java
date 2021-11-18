@@ -79,7 +79,7 @@ public class CommonCodeService {
 
     public CommonGroupCodeResponseDto selCommonDetailCode(String groupCode) throws Exception {
 
-        CommonCodeGroup group = commonCodeGroupRepository.findByGroupCode(groupCode).orElseThrow(() -> new IllegalArgumentException());
+        CommonCodeGroup group = commonCodeGroupRepository.findByGroupCode(groupCode).orElseThrow(IllegalArgumentException::new);
 
         return new CommonGroupCodeResponseDto(group);
     }
@@ -94,7 +94,7 @@ public class CommonCodeService {
 
     public void updCommonGroupCode(@Valid CommonCodeRequestDto dto) throws Exception {
 
-        CommonCodeGroup group = commonCodeGroupRepository.findByGroupCode(dto.getGroupCode()).orElseThrow(() -> new IllegalArgumentException());
+        CommonCodeGroup group = commonCodeGroupRepository.findByGroupCode(dto.getGroupCode()).orElseThrow(IllegalArgumentException::new);
 
         group.update(dto);
         List<String> detailCodes = new ArrayList<>();

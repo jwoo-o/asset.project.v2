@@ -2,7 +2,7 @@ package com.gen.vacation.global.domain.entity;
 
 
 import com.gen.vacation.global.domain.common.BooleanToYNConverter;
-import com.gen.vacation.global.Enum.LoginHistoryEnum;
+import com.gen.vacation.global.enums.LoginHistoryEnum;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
