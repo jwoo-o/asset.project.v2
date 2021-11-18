@@ -120,7 +120,7 @@
                 </el-table-column>
                 <el-table-column align="center" label="퇴사처리" width="100">
                   <template slot-scope="{row}">
-                    <el-button icon="el-icon-minus" size="small" type="danger" @click="handleDelete(row)" />
+                    <el-button :disabled="!row.useYn" icon="el-icon-minus" size="small" type="danger" @click="handleDelete(row)" />
                   </template>
                 </el-table-column>
               </el-table>

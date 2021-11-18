@@ -9,6 +9,7 @@ export const approval_reject_success_message = '반려가 완료되었습니다'
 
 export const reject_empty_message = '반려사유를 입력하세요'
 export const approval_message = '요청이 완료되었습니다'
+export const success_message = '발급이 완료되었습니다'
 
 export const file_necessary_message = '기타로 상신시 파일등록이 필요합니다.'
 

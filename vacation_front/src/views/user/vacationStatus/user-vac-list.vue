@@ -19,7 +19,7 @@
               >
                 <el-row>
                   <el-col :xs="12" :sm="14" :lg="16">
-                    <span style="margin: 10px"> 휴가현황</span>
+                    <span style="margin: 10px">휴가현황</span>
                   </el-col>
                   <el-col :xs="12" :sm="10" :lg="8" align="right">
                     <el-select v-model="year" style="margin-right: 10px;width: 30%" size="small" @change="handleFilter">

@@ -9,8 +9,15 @@
         active-text-color="#9CC3D7"
         @select="handleSelect"
       >
+        <el-menu-item v-if="width > 760" style="width: 150px;text-shadow: 0 0 0 black; color: transparent; text-align: center;">
+          <img src="@/assets/joeun.svg">
+        </el-menu-item>
         <el-submenu index="admin-vacation-list">
-          <template slot="title">인사관리</template>
+          <template slot="title">
+            <el-badge :value="$store.getters.alarmCount !== 0 ? 'new': ''" style="line-height: 35px;margin-top: -1px;" >
+              인사관리
+            </el-badge>
+          </template>
           <el-menu-item index="admin-vacation-list">
             휴가 현황
           </el-menu-item>
@@ -19,6 +26,11 @@
           </el-menu-item>
           <el-menu-item index="user-list">
             사원 관리
+          </el-menu-item>
+          <el-menu-item index="user-cert">
+            <el-badge :value="$store.getters.alarmCount === 0 ? '' : $store.getters.alarmCount" >
+              증명서 관리
+            </el-badge>
           </el-menu-item>
         </el-submenu>
         <el-submenu index="admin-asset-dashboard">
@@ -101,7 +113,7 @@ export default {
     },
     handleSelect(index) {
       if (index === null) {
-        index = 'user-list'
+        index = 'admin-vacation-list'
       }
       this.$router.push({ name: index })
     },

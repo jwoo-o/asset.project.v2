@@ -366,6 +366,9 @@ export default {
       this.loading1 = true
       await api_asset_detail(assetId).then(response => {
         const { data } = response
+        if (data.assetInfo.networks) {
+          data.assetInfo.address = data.assetInfo.networks[0].address
+        }
         this.form = data
         this.fileList = data.fileList
         if (this.fileList.length > 0) {

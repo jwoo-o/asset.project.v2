@@ -26,10 +26,6 @@ export default {
     chartData: {
       type: Array,
       required: true
-    },
-    chartColumn: {
-      type: Array,
-      default: () => ['USB', 'CD/DVD', 'EXTERNAL', 'MTP/PTP', 'NETWORK', 'PRINT', 'UNKNOWN', 'BROWSER', 'MAIL', 'MESSENGER']
     }
   },
   data() {

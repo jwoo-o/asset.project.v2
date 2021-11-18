@@ -7,7 +7,7 @@
     <div ref="qrCodeInfo" style="width: 370px;height: 120px;padding: 2px 0 2px 25px">
       <el-row>
         <el-col :span="14">
-          <img src="" style="height: 32px">
+          <img src="@/assets/joeun_qr_image.png" style="height: 32px">
           <table border="1px" style="border-collapse:collapse;" width="210">
             <tr>
               <td style="padding: 10px">

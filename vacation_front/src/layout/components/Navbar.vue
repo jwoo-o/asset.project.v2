@@ -10,6 +10,9 @@
         active-text-color="#9CC3D7"
         @select="handleSelect"
       >
+        <el-menu-item style="width: 150px;text-shadow: 0 0 0 black; color: transparent; text-align: center;">
+          <img src="@/assets/joeun.svg">
+        </el-menu-item>
         <el-menu-item class="custom-menu-item" index="user-home">
           휴가 등록
         </el-menu-item>
@@ -50,7 +53,7 @@
           휴가 등록
         </el-menu-item>
         <el-menu-item v-if="$store.getters.isApprover" class="custom-menu-item" index="approve-list">
-          <el-badge :value="$store.getters.approvalCount === 0 ? '' : $store.getters.approvalCount" style="line-height: 25px;margin-top: -1px;" @click.native="dialogTableVisible=true">
+          <el-badge :value="$store.getters.approvalCount === 0 ? '' : $store.getters.approvalCount" style="line-height: 25px;margin-top: -1px;" >
             휴가 결재
           </el-badge>
         </el-menu-item>
@@ -75,6 +78,11 @@
             <svg-icon icon-class="main_user" class-name="user-avatar" style="background-color: white" />
           </div>
           <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item>
+              <router-link :to="{name: 'user-info', query:{userId:$store.getters.userId}}">
+                <span style="display:block;">사용자 정보</span>
+              </router-link>
+            </el-dropdown-item>
             <el-dropdown-item @click.native="logout">
               <span style="display:block;">로그아웃</span>
             </el-dropdown-item>

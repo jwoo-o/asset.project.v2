@@ -116,7 +116,7 @@
 <script>
 import html2canvas from 'html2canvas'
 import CustomCalendar from '@/components/Calendar/index'
-import { api_user_deadline_list, api_user_deadline_register } from '@/api/deadline/deadline'
+import { api_user_deadline_list, api_user_deadline_register,api_user_deadline_confirm } from '@/api/deadline/deadline'
 import { defaultSearchForm } from '@/default/data'
 import { api_user_vacation_list } from '@/api/vacation/vacation'
 import { mapGetters } from 'vuex'
@@ -163,8 +163,6 @@ export default {
     if (this.$route.query.year && this.$route.query.writer) {
       this.year = this.$route.query.year
       this.writer = this.$route.query.writer
-      /* this.getVacationList()
-      this.getDeadlineList()*/
       new Promise(this.getVacationList).then(this.getDeadlineList)
     } else {
       this.$router.push('/')
@@ -183,12 +181,7 @@ export default {
           const img = canvas.toDataURL('image/png').replace('data:image/png;base64,', '')
           data.image = img
         })
-      }/* else {
-        await html2canvas(this.$refs.deadlineInfo).then(function(canvas) {
-          const img = canvas.toDataURL('image/png')
-          data.image = img
-        })
-      }*/
+      }
       this.loading1 = true
       const token = this.$route.query.checkKey
       await api_user_deadline_register(data, token).then(() => {
@@ -241,6 +234,9 @@ export default {
             this.isUpdate = true
             this.deadlines = ADMIN.deadlines
             this.deadlines.map(value => { this.checkedVacation += value.countDay })
+            if (token) {
+              this.handleDeadlineConfirm()
+            }
           } else {
             if (USER.deadlines) {
               this.deadlines = USER.deadlines
@@ -251,6 +247,15 @@ export default {
       }).catch(() => {
         this.loading = false
       })
+    },
+    handleDeadlineConfirm() {
+      const data = {
+        year: this.$route.query.year,
+        userId: this.$route.query.userId,
+        writer: this.$route.query.writer
+      }
+      const token = this.$route.query.checkKey
+      api_user_deadline_confirm(data, token)
     },
     onClickDeadline(res) {
       const date = new Date(res.start)

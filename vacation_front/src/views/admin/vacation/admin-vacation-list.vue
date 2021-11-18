@@ -165,8 +165,8 @@
                         <el-button
                           size="small"
                           :disabled="row.userDeadline ? false : !row.useYn"
-                          :type="row.userDeadline ? 'success' : row.sender ? 'warning' : ''"
-                        >{{ row.userDeadline ? 'Y' : row.sender ? 'S' : 'N' }}</el-button>
+                          :type="row.userSender ? row.userDeadline ? 'success' : 'warning' : ''"
+                        >{{ row.userSender ? row.userDeadline ? 'Y' : 'S' : 'N' }}</el-button>
                       </template>
                     </el-table-column>
                     <el-table-column
@@ -178,9 +178,9 @@
                       <template slot-scope="{row}">
                         <el-button
                           size="small"
-                          :disabled="row.useYn ? !row.sender : !row.adminDeadline"
-                          :type="row.adminDeadline ? 'success' : ''"
-                        >{{ row.adminDeadline ? 'Y' : 'N' }}</el-button>
+                          :disabled="row.useYn ? !row.userSender : !row.adminDeadline"
+                          :type="row.adminSender ? row.adminDeadline ? 'success' : 'warning' : ''"
+                        >{{ row.adminSender ? row.adminDeadline ? 'Y' : 'S' : 'N'}}</el-button>
                       </template>
                     </el-table-column>
                   </el-table>
@@ -270,8 +270,9 @@ export default {
           this.$router.push({ name: 'admin-annual-deadline', query: { userId: info.userId, year: this.year, writer: column.columnKey }})
         } else {
           if (info.useYn) {
-            const message = info.sender ? '전송' : '재전송'
-            this.$confirm(info.sender ? send_message : reSend_message, `${message}?`, {
+            console.log(info)
+            const message = info.userSender ? '재전송' : '전송'
+            this.$confirm(info.userSender ? reSend_message : send_message, `${message}?`, {
               confirmButtonText: '전송',
               cancelButtonText: '취소',
               dangerouslyUseHTMLString: true,
@@ -282,12 +283,7 @@ export default {
           }
         }
       } else if (column.columnKey === 'ADMIN') {
-        if (info.useYn && info.sender) {
-          this.$router.push({
-            name: 'admin-annual-deadline',
-            query: { userId: info.userId, year: this.year, writer: column.columnKey }
-          })
-        } else if (!info.useYn && info.adminDeadline) {
+        if ((info.useYn && info.userSender) || (!info.useYn && info.adminDeadline)) {
           this.$router.push({
             name: 'admin-annual-deadline',
             query: { userId: info.userId, year: this.year, writer: column.columnKey }

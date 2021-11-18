@@ -30,7 +30,7 @@
                 </el-col>
               </el-card>
               <time-line style="height: 120px" :approver-status="vacationDetail.approveState" :order-position="vacationDetail.orderPosition" :approver-list="approverList" />
-              <el-card shadow="never" class="grid-wrapper scroll" style="overflow: auto;border: 0px" :body-style="{padding:'0px'}">
+              <el-card shadow="never" class="grid-wrapper scroll" style="overflow: auto;" :body-style="{padding:'5px'}">
                 <table v-loading="loading" class="tg">
                   <thead>
                     <tr>
@@ -46,10 +46,10 @@
                       <td class="tg-i3ry" style="text-align: center">{{ vacationDetail.endDay }}</td>
                       <td class="tg-i3ry" style="text-align: center">{{ vacationDetail.countDay }}</td>
                       <td class="tg-i3ry" style="text-align: center">
-                        <span>{{ vacationDetail.vacationKind }}</span>
+                        <span>{{ vacationDetail.vacationKindDesc }}</span>
                       </td>
                       <td class="tg-i3ry" style="text-align: center">
-                        <span>{{ vacationDetail.approveState }}</span>
+                        <span>{{ vacationDetail.approveStateDesc }}</span>
                       </td>
                     </tr>
                   </thead>
@@ -90,7 +90,7 @@
                         />
                       </td>
                     </tr>
-                    <tr v-if="vacationDetail.approveState === '반려'">
+                    <tr v-if="vacationDetail.approveState === 'REJECT'">
                       <td class="tg-qxe1">반려사유</td>
                       <td class="tg-i3ry" colspan="5">{{ vacationDetail.rejectReason }}</td>
                     </tr>
@@ -99,21 +99,21 @@
               </el-card>
               <div>
                 <el-button
-                  v-if="vacationDetail.approveState === '상신'"
+                  v-if="vacationDetail.approveState === 'WAIT'"
                   style="margin: 10px; float:right;"
                   size="small"
                   @click="deleteVacation"
                 >삭제
                 </el-button>
                 <el-button
-                  v-if="vacationDetail.approveState === '상신'"
+                  v-if="vacationDetail.approveState === 'WAIT'"
                   style="margin: 10px; float:right;"
                   size="small"
                   @click="editVacation"
                 >수정
                 </el-button>
                 <el-button
-                  v-if="vacationDetail.approveState === '승인완료'"
+                  v-if="vacationDetail.approveState === 'APPROVE'"
                   style="margin: 10px; float:right;"
                   size="small"
                   @click="handleCancelVacation"

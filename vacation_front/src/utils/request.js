@@ -2,7 +2,6 @@ import axios from 'axios'
 import { Message } from 'element-ui'
 import store from '@/store'
 import { getRefreshToken, getToken } from '@/utils/auth'
-import { api_refresh_token } from '@/api/login/auth'
 import router from '@/router'
 
 const service = axios.create({
@@ -31,10 +30,6 @@ service.interceptors.response.use(
   error => {
     const config = error
     let message = error.response.data.message
-    // let isAlreadyFetchingAccessToken = store.getters.toggleFetch
-    // let isAlreadyFetchingAccessToken = false
-
-    const adminId = store.getters.adminId
     const refreshToken = getRefreshToken()
 
     const errorCode = config.message.includes('401')
@@ -48,27 +43,17 @@ service.interceptors.response.use(
     if (config.message.includes('502')) {
       message = '잠시 후 다시 접속 바랍니다'
     }
-    if (errorCode && refreshToken !== undefined && refreshToken !== null) {
-      if (!store.getters.toggleFetch) {
-        store.dispatch('app/toggleFetching', true)
-
-        const data = {}
-        data.adminId = adminId
-        data.refreshToken = refreshToken
-
-        api_refresh_token(data).then(response => {
-          store.dispatch('app/toggleFetching', false)
-          store.dispatch('admin/changeToken', response.data)
-        }).catch(() => {
-          store.dispatch('app/toggleFetching', false)
-          store.dispatch('admin/logout')
-          Message({
-            message: '로그인이 만료되었습니다',
-            type: 'error'
-          })
-          store.dispatch('admin/logout')
-          router.push('/login/admin')
-        })
+    if (errorCode && refreshToken !== null) {
+      Message({
+        message: '로그인이 만료되었습니다',
+        type: 'error'
+      })
+      if (store.getters.role === 'ROLE_USER') {
+        store.dispatch('user/logout')
+        router.push('/')
+      } else if (store.getters.role === 'ROLE_ADMIN') {
+        store.dispatch('admin/logout')
+        router.push('/mng')
       }
     } else {
       if (message !== '') {
@@ -76,8 +61,8 @@ service.interceptors.response.use(
           message: message,
           type: 'error'
         })
+        return Promise.reject(error)
       }
-      return Promise.reject(error)
     }
   }
 )

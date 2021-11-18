@@ -39,6 +39,7 @@ const getters = {
   isAssetAdmin: state => state.user.isAssetAdmin,
   vacationUseCnt: state => state.user.vacationUseCnt,
   vacationTotalCnt: state => state.user.vacationTotalCnt,
-  approvalCount: state => state.approver.approvalCount
+  approvalCount: state => state.approver.approvalCount,
+  alarmCount: state => state.alarm.alarmCount
 }
 export default getters

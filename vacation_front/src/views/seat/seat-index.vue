@@ -40,6 +40,7 @@
 </template>
 
 <script>
+import seat from '@/assets/joeunins.jpg'
 import { api_user_seat_list } from '@/api/user/user'
 import { mapGetters } from 'vuex'
 import UserInfo from './components/user-info'
@@ -70,9 +71,9 @@ export default {
   methods: {
     async init() {
       this.loading = true
-      /* this.seatStyle = {
+      this.seatStyle = {
         backgroundImage: 'url(' + seat + ')'
-      }*/
+      }
       await api_user_seat_list().then(response => {
         const { seatList, orgList } = response.data
         this.seatTag = seatList

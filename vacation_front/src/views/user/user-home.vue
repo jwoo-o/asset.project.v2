@@ -132,7 +132,7 @@
                   min-width="60"
                 >
                   <template slot-scope="{row}">
-                    <span> {{ row.vacationKind }}</span>
+                    <span> {{ row.vacationKindDesc }}</span>
                   </template>
                 </el-table-column>
                 <el-table-column
@@ -169,7 +169,7 @@
                 min-width="70"
               >
                 <template slot-scope="{row}">
-                  <span> {{ row.approveState }}</span>
+                  <span> {{ row.approveStateDesc }}</span>
                 </template>
               </el-table-column>
             </el-table>

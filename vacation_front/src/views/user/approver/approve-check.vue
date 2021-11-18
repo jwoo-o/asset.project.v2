@@ -28,7 +28,7 @@
                 <el-col :xs="24" :sm="6" :lg="6" style="font-size: 14px;margin-bottom: 5px">작성일자: {{ approverVacationList.createdAt | moment('YYYY-MM-DD') }}</el-col>
               </el-card>
               <time-line style="height: 120px" :approver-status="approverVacationList.approveState" :order-position="approverVacationList.orderPosition" :approver-list="approverList" />
-              <el-card shadow="never" class="grid-wrapper scroll" style="overflow: auto;border: 0px" :body-style="{padding:'5px'}">
+              <el-card shadow="never" class="grid-wrapper scroll" style="overflow: auto;" :body-style="{padding:'5px'}">
                 <table class="tg">
                   <thead>
                     <tr>
@@ -44,10 +44,10 @@
                       <td class="tg-i3ry" style="text-align: center">{{ approverVacationList.endDay }}</td>
                       <td class="tg-i3ry" style="text-align: center">{{ approverVacationList.countDay }}</td>
                       <td class="tg-i3ry" style="text-align: center">
-                        <span>{{ approverVacationList.vacationKind }}</span>
+                        <span>{{ approverVacationList.vacationKindDesc }}</span>
                       </td>
                       <td class="tg-i3ry" style="text-align: center">
-                        <span>{{ approverVacationList.approveState }}</span>
+                        <span>{{ approverVacationList.approveStateDesc }}</span>
                       </td>
                     </tr>
                   </thead>
@@ -88,7 +88,7 @@
                         />
                       </td>
                     </tr>
-                    <tr v-if="approverVacationList.approveState === '반려'">
+                    <tr v-if="approverVacationList.approveState === 'REJECT'">
                       <td class="tg-qxe1">반려사유</td>
                       <td class="tg-i3ry" colspan="5">{{ approverVacationList.rejectReason }}</td>
                     </tr>
@@ -174,7 +174,7 @@ export default {
         const { vacationDetail, approverList } = response.data
         this.approverVacationList = vacationDetail
         this.approverList = approverList
-        if (vacationDetail.approveState !== '승인완료' && vacationDetail.approveState !== '반려') {
+        if (vacationDetail.approveState !== 'APPROVE' && vacationDetail.approveState !== 'REJECT') {
           this.isApproverState = true
         }
         this.loading = false

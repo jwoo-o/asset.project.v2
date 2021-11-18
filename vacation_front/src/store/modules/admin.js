@@ -91,7 +91,7 @@ const actions = {
       commit('SET_REFRESH_TOKEN', '')
       removeToken()
       removeRefreshToken()
-      resetRouter()
+      // resetRouter()
 
       // reset visited views and cached views
       // to fixed https://github.com/PanJiaChen/vue-element-admin/issues/2485

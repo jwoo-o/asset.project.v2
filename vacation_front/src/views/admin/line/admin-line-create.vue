@@ -87,7 +87,7 @@
                     @change="handleUserData"
                   >
                     <el-option
-                      v-for="item in userList.filter(item => (item.jobCd > groupCodeForm.jobCode))"
+                      v-for="item in userList.filter(item => (item.jobCd > groupCodeForm.jobCode) && item.useYn)"
                       :key="item.userId"
                       :label="item.name"
                       :value="item.userId"

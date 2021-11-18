@@ -14,7 +14,14 @@
           <el-form ref="userForm" size="small" :model="userForm" :rules="userRules">
             <div class="content">
               <el-row>
-                <el-col v-if="userForm.imgSrc !== ''" :xs="24" :sm="24" :lg="24" align="center" style="margin-bottom: 10px">
+                <el-col
+                  v-if="userForm.imgSrc !== ''"
+                  :xs="24"
+                  :sm="24"
+                  :lg="24"
+                  align="center"
+                  style="margin-bottom: 10px"
+                >
                   <el-image
                     style="width: 150px; height: 170px"
                     :src="userForm.imgSrc"
@@ -81,36 +88,45 @@
                     </el-select>
                   </el-form-item>
                 </el-col>
-                <!--<el-col v-if="userForm.jobCd > 3" :xs="24" :sm="24" :lg="24">
-                  <el-form-item label="겸직부서" label-width="120px" prop="selectOrgCode">
-                    <div style="border: 1px solid #E8E8E8;height: 200px">
-                      <treeselects
-                        v-model="selectOrgCode"
-                        :default-expand-level="1"
-                        :options="$store.getters.orgList"
-                        placeholder="선택"
-                        @select="handleNodeClick"
-                      >
-                        <div slot="value-label" slot-scope="{ node }">{{ node.raw.orgFullName }}</div>
-                      </treeselects>
-                      <el-tag
-                        v-for="tag in conMgrCode"
-                        :key="tag.value"
-                        effect="dark"
-                        closable
-                        type="primary"
-                        style="margin-right: 5px"
-                        @close="handleClose(tag)"
-                      >
-                        <span style="margin-right: 5px">{{ tag.name }}</span>
-                      </el-tag>
-                    </div>
-
+                <el-col :xs="24" :sm="24" :lg="24">
+                  <el-form-item label="담당업무" label-width="120px" prop="responsibilities">
+                    <el-input v-model="userForm.responsibilities" />
                   </el-form-item>
-                </el-col>-->
+                </el-col>
                 <el-col v-if="!isEdit" :xs="24" :sm="24" :lg="24">
                   <el-form-item label="패스워드" label-width="120px">
                     <span> 초기 비밀번호는 사용자 아이디와 동일합니다</span>
+                  </el-form-item>
+                </el-col>
+                <el-col :xs="24" :sm="24" :lg="24">
+                  <el-form-item label="생년월일" label-width="120px" prop="birthDate">
+                    <el-date-picker
+                      v-model="userForm.birthDate"
+                      type="date"
+                      placeholder="생년월일 선택"
+                      :picker-options="pickerOptions"
+                      value-format="yyyy-MM-dd"
+                      :editable="false"
+                      :clearable="false"
+                      size="small"
+                      style="float: left;width: 100%"
+                    />
+                  </el-form-item>
+                </el-col>
+                <el-col :xs="24" :sm="24" :lg="24">
+                  <el-form-item label="거주지" label-width="120px" prop="address">
+                    <el-input ref="address" v-model="userForm.address" placeholder="기본주소" @focus="showApi" />
+                    <el-input ref="address1" v-model="userForm.address1" placeholder="상세주소" />
+                  </el-form-item>
+                </el-col>
+                <el-col :xs="24" :sm="24" :lg="24">
+                  <el-form-item label="이메일" label-width="120px" prop="email">
+                    <el-input v-model="userForm.email" readonly :disabled="isEdit" />
+                  </el-form-item>
+                </el-col>
+                <el-col :xs="24" :sm="24" :lg="24">
+                  <el-form-item label="연락처" label-width="120px" prop="tel">
+                    <el-input v-model="userForm.tel" />
                   </el-form-item>
                 </el-col>
                 <el-col :xs="24" :sm="24" :lg="24">
@@ -126,16 +142,6 @@
                       size="small"
                       style="float: left;width: 100%"
                     />
-                  </el-form-item>
-                </el-col>
-                <el-col :xs="24" :sm="24" :lg="24">
-                  <el-form-item label="이메일" label-width="120px" prop="email">
-                    <el-input v-model="userForm.email" readonly :disabled="isEdit" />
-                  </el-form-item>
-                </el-col>
-                <el-col :xs="24" :sm="24" :lg="24">
-                  <el-form-item label="연락처" label-width="120px" prop="tel">
-                    <el-input v-model="userForm.tel" />
                   </el-form-item>
                 </el-col>
                 <el-col :xs="24" :sm="24" :lg="24">
@@ -164,7 +170,12 @@
                 </el-col>
                 <el-col :xs="24" :sm="24" :lg="24" align="right" style="margin-bottom: 10px">
                   <el-form-item label="자산관리자" label-width="120px" prop="admin">
-                    <el-switch v-model="userForm.assetAdmin" :active-value="true" :inactive-value="false" @change="handleAssetAdminChange" />
+                    <el-switch
+                      v-model="userForm.assetAdmin"
+                      :active-value="true"
+                      :inactive-value="false"
+                      @change="handleAssetAdminChange"
+                    />
                   </el-form-item>
                 </el-col>
                 <el-col v-if="userForm.assetAdmin" :xs="24" :sm="24" :lg="24">
@@ -180,7 +191,12 @@
                 </el-col>
                 <el-col :xs="24" :sm="24" :lg="24" align="right" style="margin-bottom: 10px">
                   <el-form-item label="관리자" label-width="120px" prop="admin">
-                    <el-switch v-model="userForm.admin" :active-value="true" :inactive-value="false" @change="handleAdminChange" />
+                    <el-switch
+                      v-model="userForm.admin"
+                      :active-value="true"
+                      :inactive-value="false"
+                      @change="handleAdminChange"
+                    />
                   </el-form-item>
                 </el-col>
                 <el-col :xs="24" :sm="24" :lg="24" align="right">
@@ -229,7 +245,14 @@ import {
 } from '../message/constant'
 import { validId, validEmail, validName, validTel } from '@/utils/validate'
 import { rank_cd, job_cd } from '@/default/data'
-import { api_user_check, api_user_register, api_user_edit, api_user_info, api_user_image_delete, api_user_image_upload } from '@/api/user/user'
+import {
+  api_user_check,
+  api_user_register,
+  api_user_edit,
+  api_user_info,
+  api_user_image_delete,
+  api_user_image_upload
+} from '@/api/user/user'
 import { validImage } from '@/utils/validate'
 import { mapGetters } from 'vuex'
 import SeatIndex from '../../seat/seat-index'
@@ -317,8 +340,12 @@ export default {
         jobCd: '',
         jobNm: '',
         email: '',
+        responsibilities: '',
         tel: '',
         hireDate: '',
+        birthDate: '',
+        address: '',
+        address1: '',
         imgSrc: '',
         seatId: '',
         admin: false,
@@ -334,7 +361,9 @@ export default {
         name: [{ required: true, trigger: 'blur', validator: validateName }],
         email: [{ required: true, trigger: 'blur', validator: validateEmail }],
         tel: [{ required: true, trigger: 'blur', validator: validateTel }],
+        address: [{ required: true, trigger: 'change', validator: validateCommon }],
         hireDate: [{ required: true, trigger: 'change', validator: validateCommon }],
+        birthDate: [{ required: true, trigger: 'change', validator: validateCommon }],
         orgCode: [{ required: true, trigger: 'change', validator: validateCommon }],
         mgrOrgCode: [{ required: true, trigger: 'change', validator: validateMgrCode }],
         rankIndex: [{ required: true, trigger: 'change', validator: validateCommon }],
@@ -558,6 +587,28 @@ export default {
     },
     handleClose(tag) {
       this.conMgrCode.splice(this.conMgrCode.indexOf(tag), 1)
+    },
+    showApi() {
+      this.$refs.address.blur()
+      new window.daum.Postcode({
+        oncomplete: (data) => {
+          let fullRoadAddr = data.roadAddress
+          let extraRoadAddr = ''
+          if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+            extraRoadAddr += data.bname
+          }
+          if (data.buildingName !== '' && data.apartment === 'Y') { extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName) }
+          if (extraRoadAddr !== '') { extraRoadAddr = ' (' + extraRoadAddr + ')' }
+          if (fullRoadAddr !== '') { fullRoadAddr += extraRoadAddr }
+          this.userForm.address = fullRoadAddr
+        },
+        onclose: (state) => {
+          if (state === 'COMPLETE_CLOSE') {
+            this.userForm.address1 = ''
+            this.$refs.address1.focus()
+          }
+        }
+      }).open()
     }
   }
 }

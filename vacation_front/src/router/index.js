@@ -125,6 +125,12 @@ export const constantRoutes = [
         meta: { title: '배치도', auth: 'ROLE_USER' }
       },
       {
+        path: '/user-info',
+        component: () => import('@/views/user/info/index'),
+        name: 'user-info',
+        meta: { title: '사용자 정보', auth: 'ROLE_USER', hidden: true }
+      },
+      {
         path: '/user-asset-dashboard',
         component: () => import('@/views/asset/asset-dashboard'),
         name: 'user-asset-dashboard',
@@ -148,7 +154,7 @@ export const constantRoutes = [
     path: '/admin',
     component: () => import('@/views/admin'),
     name: 'admin',
-    redirect: { name: 'user-list' },
+    redirect: { name: 'admin-vacation-list' },
     children: [
       {
         path: '/admin-approve-line',
@@ -211,6 +217,12 @@ export const constantRoutes = [
         component: () => import('@/views/admin/user/user-list'),
         name: 'user-list',
         meta: { title: '사원관리', auth: 'ROLE_ADMIN' }
+      },
+      {
+        path: '/user-cert',
+        component: () => import('@/views/admin/user/cert-list'),
+        name: 'user-cert',
+        meta: { title: '증명서관리', auth: 'ROLE_ADMIN' }
       },
       {
         path: '/organization-index',

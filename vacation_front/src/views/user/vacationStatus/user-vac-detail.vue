@@ -31,6 +31,7 @@
           <el-card shadow="never" class="grid-wrapper" :body-style="{padding:'10px'}">
             <el-table
               :data="vacationList"
+              size="small"
               style="width: 100%"
               :header-cell-style="{background:'#F5F7FA'}"
               @row-click="handleSelectionVacation"
@@ -61,7 +62,7 @@
                 min-width="120"
               >
                 <template slot-scope="{row}">
-                  <span>{{ row.createdAt }}</span>
+                  <span>{{ row.createdAt | moment('YYYY-MM-DD HH:mm:ss') }}</span>
                 </template>
               </el-table-column>
               <el-table-column label="휴가 구분" align="center">
@@ -71,7 +72,7 @@
                   min-width="60"
                 >
                   <template slot-scope="{row}">
-                    <span> {{ row.vacationKind }}</span>
+                    <span> {{ row.vacationKindDesc }}</span>
                   </template>
                 </el-table-column>
                 <el-table-column
@@ -108,7 +109,7 @@
                 min-width="70"
               >
                 <template slot-scope="{row}">
-                  <span>{{ row.approveState }}</span>
+                  <span>{{ row.approveStateDesc }}</span>
                 </template>
               </el-table-column>
             </el-table>

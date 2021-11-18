@@ -22,10 +22,10 @@
             </div>
             <el-col :xs="24" :sm="24" :lg="24">
               <el-card shadow="never" class="grid-wrapper" style="padding-bottom: 15px">
-                <el-col :xs="6" :sm="6" :lg="6" style="font-size: 14px">소속: {{ userList.orgName }}</el-col>
-                <el-col :xs="6" :sm="6" :lg="6" style="font-size: 14px">성명: {{ userList.userName }}</el-col>
-                <el-col :xs="6" :sm="6" :lg="6" style="font-size: 14px">직위: {{ userList.rankNm }}</el-col>
-                <el-col :xs="6" :sm="6" :lg="6" style="font-size: 14px">작성일자: {{ vacationDetail.createdAt | moment('YYYY-MM-DD') }}</el-col>
+                <el-col :xs="24" :sm="6" :lg="6" style="font-size: 14px">소속: {{ userList.orgName }}</el-col>
+                <el-col :xs="24" :sm="6" :lg="6" style="font-size: 14px">성명: {{ userList.userName }}</el-col>
+                <el-col :xs="24" :sm="6" :lg="6" style="font-size: 14px">직위: {{ userList.rankNm }}</el-col>
+                <el-col :xs="24" :sm="6" :lg="6" style="font-size: 14px">작성일자: {{ vacationDetail.createdAt | moment('YYYY-MM-DD') }}</el-col>
               </el-card>
               <time-line :order-position="vacationDetail.orderPosition" :approver-list="approverList" />
               <el-card shadow="never" class="grid-wrapper" style="overflow: auto" :body-style="{padding:'5px'}">
@@ -44,10 +44,10 @@
                       <td class="tg-i3ry" style="text-align: center">{{ vacationDetail.endDay }}</td>
                       <td class="tg-i3ry" style="text-align: center">{{ vacationDetail.countDay }}</td>
                       <td class="tg-i3ry" style="text-align: center">
-                        <span>{{ vacationDetail.vacationKind }}</span>
+                        <span>{{ vacationDetail.vacationKindDesc }}</span>
                       </td>
                       <td class="tg-i3ry" style="text-align: center">
-                        <span>{{ vacationDetail.approveState }}</span>
+                        <span>{{ vacationDetail.approveStateDesc }}</span>
                       </td>
                     </tr>
                   </thead>

@@ -31,6 +31,9 @@ router.beforeEach(async(to, from, next) => {
         if (store.getters.role === 'ROLE_USER') {
           await store.dispatch('approver/approvalCheck', store.getters.userId)
         }
+        if (store.getters.role === 'ROLE_ADMIN') {
+          await store.dispatch('alarm/alarmCheck')
+        }
         next()
       } else {
         try {

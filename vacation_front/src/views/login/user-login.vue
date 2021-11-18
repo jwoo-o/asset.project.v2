@@ -11,7 +11,7 @@
       >
 
         <div class="title-container">
-          <h3 class="title">사용자 로그인 페이지</h3>
+          <h3 class="title">Joeunins 로그인 페이지</h3>
         </div>
 
         <el-form-item prop="userId">

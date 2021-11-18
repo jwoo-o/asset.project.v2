@@ -13,6 +13,9 @@ export const edit_message = '수정이 완료되었습니다'
 export const delete_message = '삭제가 완료되었습니다'
 export const fail_message = '등록이 실패하였습니다'
 
+export const success_message = '처리되었습니다'
+
+
 export const user_register_message = '사원 등록이 완료되었습니다'
 export const user_leave_message = '퇴사 처리가 완료되었습니다'
 export const user_edit_message = '사원 수정이 완료되었습니다'

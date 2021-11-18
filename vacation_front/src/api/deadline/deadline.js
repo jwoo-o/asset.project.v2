@@ -20,4 +20,14 @@ export function api_user_deadline_register(data, token) {
     data
   })
 }
+export function api_user_deadline_confirm(data, token) {
+  return request({
+    url: '/vacation/deadline',
+    headers: {
+      'Authorization': 'Bearer ' + token
+    },
+    method: 'patch',
+    data
+  })
+}
 
